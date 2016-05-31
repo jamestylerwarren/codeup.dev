@@ -1,0 +1,12 @@
+.top_header {
+	color: red;
+	text-decoration: underline;
+}
+/* Need to label each header (ex top_header) in the html file you want styled */
+
+h2 {
+	color: blue;
+	text-decoration: underline;
+}
+
+/* Style individual elements by using sytax h1, h2 {} */

@@ -1,0 +1,60 @@
+h1 {
+				color: #F00;
+				text-decoration: overline underline;
+
+			}
+
+					h2 {
+						color: orange;
+						text-decoration: underline;
+					}
+
+					#favorite_quote {
+						text-align: center;
+					}
+
+					p, blockquote, ol, ul {
+						font-family: "Source Sans Pro";
+					}
+				
+					body { 
+						background-color: orange;
+						background-image: url(/img/wov.png);
+						background-repeat: repeat;
+						font-family: helvetica;
+					}
+
+					ol, ul { 
+						list-style: square;
+
+					}
+
+					td, tr {
+						padding: 5px;
+						text-align: center;
+					}
+
+					a:link {
+						color:blue;
+					}
+
+					a:visited {
+						color:red;
+					}
+
+					a:hover {
+						color:black;
+					}
+
+					a:active {
+						color:green;
+					}
+
+					table {
+						background-color: black;
+						color: white;
+					}
+
+					#p1 {
+						text-indent: 2em;
+					}

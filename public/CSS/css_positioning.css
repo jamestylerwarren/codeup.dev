@@ -1,0 +1,65 @@
+
+.box {
+	border: 1px solid black;
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	font-weight: bold;
+	color: white;
+	margin-top: 50px;
+
+
+}
+
+.arrow {
+	position: relative;
+	left: 40px;
+	bottom: 120px;
+	margin-top: 15px;
+	
+}
+
+
+#box-red {
+	background-color: red;
+	float: left;
+
+}
+
+#box-orange {
+	background-color: orange;
+	float: left;
+	margin-left: 50px;
+	
+
+}
+
+#box-yellow {
+	background-color: yellow;
+	float: left;
+	margin-left: 50px;
+
+}
+
+#box-green {
+	background-color: green;
+	float: left;
+	clear: both;
+	
+
+}
+
+#box-blue {
+	background-color: blue;
+	float: left;
+	margin-left: 50px;
+}
+
+#box-violet {
+	background-color: violet;
+	float: left;
+	margin-left: 50px;
+
+}
+
+

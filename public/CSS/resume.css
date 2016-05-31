@@ -1,0 +1,89 @@
+html {
+	padding: 3%;
+}
+
+hr {
+	border-color: black;
+	border-width: 5px;
+}
+
+body {
+	position: top;
+	padding: 0;
+}
+
+.navbar {
+	background-color: #CAC8C8;
+}
+
+.navbar .navbar-inverse .navbar-fixed-top {
+	position: absolute;
+	margin: 0;
+}
+
+.picandmedia {
+	padding-top: 30px;
+}
+
+.rowheader {
+	padding-top: 50px;
+	max-width: 100%;
+	height: auto;
+	display: block;
+}
+
+.profilepicture {
+	text-align: right;
+}
+
+.media {
+	padding-top: 30px;
+
+}
+
+.summaryp {
+	text-indent: 2em;
+}
+
+.skills .accomplishments .experience {
+	clear: both;
+}
+
+.bs-component {
+	position: absolute;
+	padding-top: 20px;
+
+}
+#login-dp{
+    min-width: 250px;
+    padding: 14px 14px 0;
+    overflow:hidden;
+    background-color:rgba(255,255,255,.8);
+
+}
+
+#login-dp .social-buttons{
+    margin:12px 0    
+}
+#login-dp .social-buttons a{
+    width: 49%;
+}
+#login-dp .form-group {
+    margin-bottom: 10px;
+}
+.btn-fb{
+    color: #fff;
+    background-color:#3b5998;
+}
+.btn-fb:hover{
+    color: #fff;
+    background-color:#496ebc 
+}
+.btn-tw{
+    color: #fff;
+    background-color:#55acee;
+}
+.btn-tw:hover{
+    color: #fff;
+    background-color:#59b5fa;
+}
