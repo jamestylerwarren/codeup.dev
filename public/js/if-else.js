@@ -1,8 +1,8 @@
 "use strict"
 
-var averageGrade = ("81.67")
+var averageGrade = 81.67
 
-if (averageGrade >= 80) {
+if (averageGrade > 80) {
 	console.log("You are awesome!")
 } else {
 	console.log("You need more practice.")
@@ -41,12 +41,12 @@ if (george >= 200) {
 
 var flipACoin = Math.floor(Math.random()*2)
 
-if (flipACoin == 0) {
-	console.log("Buy a car.")
-} else {
+if (flipACoin) {
 	console.log("Buy a house.")
+} else {
+	console.log("Buy a car.")
 }
 
 
-var flipACoin = (flipACoin == 0) ? console.log("Buy a car.") : console.log("Buy a house.")
+var flipACoin = (flipACoin) ? console.log("Buy a house.") : console.log("Buy a car.")
 
