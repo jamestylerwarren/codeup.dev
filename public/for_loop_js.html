@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>For Loops</title>
+</head>
+<body>
+
+
+
+
+<script>
+
+
+// Question Two:
+var message;
+
+for (var i = 1; i <= 10; i++) 
+{
+
+	message = '';
+
+	for (j = 1; j <= i; j++)
+	{
+	
+		if (i == 10) 
+		{
+			message = message + 0;
+		}
+
+		else
+		{	
+			message = message + i;
+		}	
+
+	}
+	
+	console.log (message);
+
+}
+
+
+
+
+// Question 3:
+	for (var A = Math.floor(Math.random() * 10) + 1, B = 1; B <= 10; B++) {
+			var C = A * B	
+		console.log(A + "x" + B + "=" + C);
+	}
+
+
+
+
+
+
+
+	 
+// Question 4:
+	for (var i = 0; i < 10; i++) {
+		var random = Math.floor(Math.random() * 180) + 20; 
+	
+		var message = (random % 2 == 0) ? random + " is even." : random + " is odd.";
+		console.log(message);
+	}
+
+
+
+
+
+
+
+
+// Question 5:
+	for (i = 100; i >= 5; i = i - 5) {
+		console.log(i);
+}
+
+
+
+
+variable i is 0
+variable j is 4
+variable j is 3
+variable j is 2
+variable j is 1
+
+variable i is 1
+variable j is 4
+variable j is 3
+variable j is 2
+variable j is 1
+
+variable i is 2
+variable j is 4
+variable j is 3
+variable j is 2
+variable j is 1
+
+variable i is 3
+variable j is 4
+variable j is 3
+variable j is 2
+variable j is 1
+
+
+
+
+
+</script>
+</body>
+</html>
