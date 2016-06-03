@@ -18,4 +18,22 @@
     console.log(names[2]);
     console.log(names[3]);
 
+
+
+
+
+    for (var i = 0; i < names.length; i++) {
+        console.log("The shape at index " + i + " is: " + names);
+    }
+
+
+
+
+    names.forEach(function (element, index) {
+        console.log("The name at index " + i + " is " + element);
+    });
+
+
+
+
 })();
