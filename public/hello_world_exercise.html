@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>For Loops</title>
+</head>
+<body>
+
+
+
+
+<script>
+'use strict';
+
+/*
+ * How many times a lucky number is repeated for every 100 customers?
+ */
+var luckyNumber;
+var count0 = 0;
+var count1 = 0;
+var count2 = 0;
+var count3 = 0;
+var count4 = 0;
+var count5 = 0;
+
+
+for (var i = 1; i <= 100; i = i + 1) {
+	luckyNumber = Math.floor(Math.random()* 6);
+	
+	switch (luckyNumber) {
+		case 0:
+			count0++
+			break;
+		case 1:
+			count1++
+			break;
+		case 2:
+			count2++
+			break;
+		case 3:
+			count3++
+			break;
+		case 4:
+			count4++
+			break;
+		case 5:
+			count5++
+			break;
+
+	}
+}  
+
+console.log("0 appeared " + count0 + " times.");
+console.log("1 appeared " + count1 + " times.");
+console.log("2 appeared " + count2 + " times.");
+console.log("3 appeared " + count3 + " times.");
+console.log("4 appeared " + count4 + " times.");
+console.log("5 appeared " + count5 + " times.");
+console.log(count0+count1+count2+count3+count4+count5)
+
+
+
+
+
+// The output should be something like
+
+// 0 appeared 10 times
+// 1 appeared 20 times
+// 2 appeared 15 times
+// 3 appeared 35 times
+// 4 appeared 4 times
+// 5 appeared 16 times
+
+// The total should be 100
+
+</script>
+</body>
+</html>
