@@ -23,14 +23,14 @@
 
 
     for (var i = 0; i < names.length; i++) {
-        console.log("The shape at index " + i + " is: " + names);
+        console.log("The shape at index " + i + " is: " + names[i]);
     }
 
 
 
 
     names.forEach(function (element, index) {
-        console.log("The name at index " + i + " is " + element);
+        console.log("The name at index " + index + " is " + element);
     });
 
 
