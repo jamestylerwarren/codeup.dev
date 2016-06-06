@@ -10,7 +10,7 @@
 	<title>Tyler Warren's Resume</title>
 </head>
 <body>
-	<div id="wurstfest"> 
+	<div id="content"> 
 		<div class="site-wrapper">
 			<div class="site-wrapper-inner">
 				<div class="container">
@@ -32,8 +32,10 @@
 	
 
 
-
-
+	<!-- for jquery-imagefit-plugin -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js">
+	</script>
+	<script type="text/javascript" src="/js/jquery.imagefit-0.2.js"></script>
 
 
 
@@ -47,9 +49,13 @@
 	pageTracker._trackPageview();
 	</script>
 
+	<script type="text/javascript">
+		$(function(){ 
+			$('#content').imagefit(); 
+		});
+	</script>
 
 
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 	</body>
