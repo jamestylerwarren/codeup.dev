@@ -154,7 +154,18 @@ body {
   padding-top: 10px;
 }
 
-.leader {
-  color: #727878
+.page-header {
+  color: #727878;
 }
 
+.col-padding {
+  color: #3C6A9C;
+}
+
+#column-text {
+  color: #727878;
+}
+
+.container {
+  padding-top: 0;
+}
