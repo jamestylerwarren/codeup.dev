@@ -5,7 +5,7 @@
     var planetsArray;
 
     // TODO: Convert planetsString to an array, save it to planetsArray.
-    planetsArray = planetsString.split(",");
+    planetsArray = planetsString.split("|");
 
     console.log(planetsArray);
 
@@ -14,9 +14,10 @@
 
     var planetString = "Mercury<br>Venus<br>Earth<br>Mars<br>Jupiter<br>Saturn<br>Uranus<br>Neptune";
 
-    var planetArray = planetString.split(",");
+    var brString = planetsArray.join("<br>");
 
-    console.log(planetArray);
+
+    console.log(brString);
 
     // Bonus: Create a second string that would display your planets in an undordered list.
     //        You will need an opening AND closing <ul> tags around the entire string, and <li> tags around each planet.

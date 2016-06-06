@@ -38,9 +38,11 @@ body {
 
 #wurstfest {
   background-image: url(/img/photo.JPG); 
-  background-size: cover;
-  background-repeat: no repeat;
+  background-size: 100%;
+  background-position: center;
+  background-repeat: no-repeat;
   width: 100%;
+  height: 775px;
   margin: 0;
   padding: 0;
 }
@@ -145,27 +147,3 @@ body {
   vertical-align: middle;
 }
 
-#about {
-  background-color: red;
-}
-
-.profile {
-  color: #3C6A9C;
-  padding-top: 10px;
-}
-
-.page-header {
-  color: #727878;
-}
-
-.col-padding {
-  color: #3C6A9C;
-}
-
-#column-text {
-  color: #727878;
-}
-
-.container {
-  padding-top: 0;
-}
