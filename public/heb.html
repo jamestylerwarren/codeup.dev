@@ -9,6 +9,7 @@
 
 
 	<script>
+	'use strict'
 	// customer name
 	// product name
 	// prodcuct price
@@ -22,27 +23,60 @@
 	// BONUS - another customer?
 	console.log('heb question');
 
+
+
 	var customers = [];
-
-
-	
 
 	do {
 		var customer = {
-			name: null
-			products = []
+			name: null,
+			products: [],
+
+			getTotal: function() {
+				var subTotal = 0;
+				for (var i = 0; i < this.products.length; i++) {
+			    	subTotal = this.products[i].price + subTotal;
+			    }
+		    	return subTotal;
+			},
+			getDiscount: function () {
+				var discount = 0;
+				var subTotal = this.getTotal();
+				if (subTotal > 200) {
+					discount = subTotal * .35
+				} 
+				return subTotal - discount;
+			}
 		};
 
+
 		var customerName = prompt("Customer name?")
-			customer.products.push(customerName);
-			
+			customer.name = customerName;
+			console.log(customerName);
+		do {
+			var name = prompt("What product did you buy?")
+			var price = prompt("How much did you pay for " + name + "?")
+			var product = {
+				name: name,
+				price: Number(price)
+			};
+			customer.products.push(product);
 
+			var moreProducts = confirm("Are there more products?");
+		} while (moreProducts);
 
-		customer.push(customer);
+		customers.push(customer);
+
 		var moreCustomers = confirm("Are there more customers?");
 	} while (moreCustomers);
 
 
+	for (var i = 0; i < customers.length; i++) {
+		alert('Subtotal for ' + customers[i].name + ' is ' + customers[i].getTotal());
+
+	alert("Total for " + customers[i].name + " is " + customers[i].getDiscount());
+
+	}
 
 
 
@@ -51,73 +85,16 @@
 
 
 
-	var name = prompt("Customer Name?");
+
+
+
+	
 
    
-	var cameronCost = 180;
-	var ryanCost = 250;
-	var georgeCost = 320;
-
-	var discountCostRequirement = 200;
-	var discount = 0.35;
-
-	var cameronCostWithDiscount;
-	if (cameronCost > discountCostRequirement) {
-		cameronCostWithDiscount = cameronCost - (cameronCost * discount);
-	} else {
-		cameronCostWithDiscount = cameronCost;
-	}
-	console.log('Cameron: ' + cameronCost + ', ' + cameronCostWithDiscount);
-
-	var ryanCostWithDiscount;
-	if (ryanCost > discountCostRequirement) {
-		ryanCostWithDiscount = ryanCost - (ryanCost * discount);
-	} else {
-		ryanCostWithDiscount = ryanCost;
-	}
-	console.log('Ryan: ' + ryanCost + ', ' + ryanCostWithDiscount);
-
-	var georgeCostWithDiscount;
-	if (georgeCost > discountCostRequirement) {
-		georgeCostWithDiscount = georgeCost - (georgeCost * discount);
-	} else {
-		georgeCostWithDiscount = georgeCost;
-	}
-	console.log('Ryan: ' + georgeCost + ', ' + georgeCostWithDiscount);
+	
 
 
 
 	</script>
 </body>
 </html>
-console.log('heb question');
-var cameronCost = 180;
-var ryanCost = 250;
-var georgeCost = 320;
-
-var discountCostRequirement = 200;
-var discount = 0.35;
-
-var cameronCostWithDiscount;
-if (cameronCost > discountCostRequirement) {
-	cameronCostWithDiscount = cameronCost - (cameronCost * discount);
-} else {
-	cameronCostWithDiscount = cameronCost;
-}
-console.log('Cameron: ' + cameronCost + ', ' + cameronCostWithDiscount);
-
-var ryanCostWithDiscount;
-if (ryanCost > discountCostRequirement) {
-	ryanCostWithDiscount = ryanCost - (ryanCost * discount);
-} else {
-	ryanCostWithDiscount = ryanCost;
-}
-console.log('Ryan: ' + ryanCost + ', ' + ryanCostWithDiscount);
-
-var georgeCostWithDiscount;
-if (georgeCost > discountCostRequirement) {
-	georgeCostWithDiscount = georgeCost - (georgeCost * discount);
-} else {
-	georgeCostWithDiscount = georgeCost;
-}
-console.log('Ryan: ' + georgeCost + ', ' + georgeCostWithDiscount);
