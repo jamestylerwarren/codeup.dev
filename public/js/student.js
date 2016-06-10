@@ -23,7 +23,7 @@ function getName (event){
 	// enabling buttons when value is entered into name field
 	document.getElementById("add-grade").disabled = false;
 	document.getElementById("calculate-average").disabled = false;
-	document.getElementById("student-name").innerText = student.name;
+	document.getElementById("student-name").innerText = xstudent.name;
 }
 
 
