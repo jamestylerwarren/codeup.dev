@@ -1,9 +1,9 @@
 'use strict';
-
+// Buttons are disabled upon page load
 document.getElementById("add-grade").disabled = true;
 document.getElementById("calculate-average").disabled = true;
 
-
+// Adding Listeners
 var saveButton = document.getElementById("save-name");
 saveButton.addEventListener('click', getName, false);
 
@@ -13,29 +13,43 @@ addAndContinue.addEventListener('click', addSubject, false);
 var addAndCalculate = document.getElementById("calculate-average");
 addAndCalculate.addEventListener('click', calculateAverage, false);
 
+
+
+// getting name value and sending it to the variable student.name to store it
 function getName (event){
 	var students = " ";
 	var student_name = document.getElementById("student-name").value;
-	student.name = student_name
+	student_name = student.name 
+	// enabling buttons when value is entered into name field
 	document.getElementById("add-grade").disabled = false;
 	document.getElementById("calculate-average").disabled = false;
+	document.getElementById("student-name").innerText = student.name;
 }
 
+
 function addSubject (event){
-	var subjectName = " ";
+	var subjectName = "";
+	//calling subject field; saving the value as a string and sending to subject.name
 	subjectName = document.getElementById("subject").value;
 	document.getElementById("subject").value = "";
 	var grade = "";
+	//calling grade field; saving the value (as a number) as a string
 	grade = parseInt(document.getElementById("grade").value);
 	document.getElementById("grade").value = "";
-	document.getElementById("grades").innerHTML += "<tr><td>" + subjectName + "</td><td>" + grade + "</td></tr>";
+	// sending grade to the table
+	document.getElementById("grades").innerHTML += "<tr><td>" + subjectName 
+	+ "</td><td>" + grade + "</td></tr>";
+	//sending subject name and grade in the () to the addSubject function in the student variable
 	student.addSubject(subjectName, grade); 
 }
 
-function calculateAverage (event){	
+function calculateAverage (event){
+	//this adds what is in the fields when you click add and calculate button; 
+	//otherwise it won't take the data in subj and grade fields	
 	addSubject()
 	var average = student.calculateAverage()
 	document.getElementById("student-average").innerText = average;
+	//if statement evaluating wether the great is awesome or not
 	if (student.isAwesome()) {
 			document.getElementById("student-awesome").className = "";
 		} else {
@@ -43,9 +57,6 @@ function calculateAverage (event){
 		}
 
 }
-
-
-
 
 var student = {
 	awesomeGrade: 80,
