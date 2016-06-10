@@ -1,0 +1,26 @@
+
+
+
+
+/*CSS for buttons below*/
+.clear
+{
+    clear:both;
+}
+
+button
+{
+    padding:10px 15px 10px 15px;
+    margin:5px;
+    border: 1px solid black;
+}
+
+button.zeroButton
+{
+    width:95px;
+}
+
+.spacer
+{
+    margin-left:46px;
+}

@@ -67,7 +67,6 @@ var student = {
 		this.subjects.forEach(function (subject) {
 			average += subject.grade;
 		});
-		console.log(average);
 		return average / this.subjects.length;
 	},
 	addSubject: function (name, grade) {
