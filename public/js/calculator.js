@@ -158,25 +158,25 @@
 	var result;
 	switch(operatorField){
 		case "+":
-        result = firstField + secondField; 
-        document.getElementById("operator").value = "";
-        document.getElementById("fieldTwo").value = "";
-        break;
+        	result = firstField + secondField; 
+       		parseInt(document.getElementById("operator").value) = "";
+        	parseInt(document.getElementById("fieldTwo").value) = "";
+        	break;
     case "-":
-    	result = firstField - secondField; 
-    	document.getElementById("operator").value = "";
-        document.getElementById("fieldTwo").value = "";
-    	break;
+	    	result = firstField - secondField; 
+	    	document.getElementById("operator").value = "";
+	        document.getElementById("fieldTwo").value = "";
+	    	break;
     case "*":
-    	result = firstField * secondField; 
-    	document.getElementById("operator").value = "";
-        document.getElementById("fieldTwo").value = "";
-    	break;
+	    	result = firstField * secondField; 
+	    	document.getElementById("operator").value = "";
+	        document.getElementById("fieldTwo").value = "";
+	    	break;
     case "/":
-    	result = firstField / secondField;
-    	document.getElementById("operator").value = "";
-        document.getElementById("fieldTwo").value = ""; 
-    	break;
+	    	result = firstField / secondField;
+	    	document.getElementById("operator").value = "";
+	        document.getElementById("fieldTwo").value = ""; 
+	    	break;
 	}
 	
 	document.getElementById("fieldOne").value = result;

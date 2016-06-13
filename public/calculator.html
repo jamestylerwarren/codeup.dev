@@ -3,62 +3,67 @@
 	<head>
 		<meta charset="utf-8">
 		<link rel="stylesheet" type="text/css" href="css/calculator.css">
-		<title>Calculator</title>
+		<title>Javascript Calculator</title>
 	</head>
 	<body>
 		<div class="calculator container">
 	<div class="row">
-		<h2>Calculator</h2>
+		<h2>Javascript Calculator</h2>
 	</div>
 
 	<!-- Fields for inputs -->
+	
+
+<div id="overallContainer">
 	<div class="calculationfields">
-		<input id="fieldOne" type="textbox" rows="1" cols="9" maxlength="9" placeholder="0" readonly>
-		<input id="operator" type="textbox" rows="1" cols="1" maxlength="1" readonly>
-		<input id="fieldTwo" type="textbox" rows="1" cols="9" maxlength="9" placeholder="0" readonly>
+		<input id="fieldOne" type="textbox" rows="1" cols="9" maxlength="9" placeholder="0" readonly size="15">
+		<input id="operator" type="textbox" rows="1" cols="1" maxlength="1" readonly size="1">
+		<input id="fieldTwo" type="textbox" rows="1" cols="9" maxlength="9" placeholder="0" readonly size="15">
 	</div>
 
-
-
-
-
-    <div class="row">
-        <div class="outputBox" contenteditable></div>
-        <div class="buttonContainer">
-        <div class="row">
-            <div class="col-xs-2">
-                <button id="seven" class="numberButton" type="button">7</button>
-                <button id="eight">8</button>
-                <button id="nine">9</button>
-                <button id="plus">+</button>
-            </div>
-        </div>
-        <div class="row">
-            <div class="col-xs-2">
-                <button id="four">4</button>
-                <button id="five">5</button>
-                <button id="six">6</button>
-                <button id="minus">-</button>
-            </div>
-        </div>
-        <div class="row">
-           <div class="col-xs-2">
-                <button id="one">1</button>
-                <button id="two">2</button>
-                <button id="three">3</button>
-                <button id="multiply">*</button>
-            </div>
-        </div>
-            <div class="row">
-                <div class="col-xs-2">
-                    <button id="zero">0</button>
-                    <button id="clear">C</button>
-                    <button id="equals">=</button>
-                    <button id="divide">/</button>
-                </div>
-            </div>
-        </div>
-    </div>
+	<div class="row">
+		<div class="buttonContainer">
+			<div class="row">
+				<div class="col-xs-2">
+					<button id="clear">C</button>
+					<button id="plusMinus">+/-</button>
+					<button id="percentage">%</button>
+					<button id="plus">+</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<button id="seven">7</button>
+					<button id="eight">8</button>
+					<button id="nine">9</button>
+					<button id="minus">-</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<button id="four">4</button>
+					<button id="five">5</button>
+					<button id="six">6</button>
+					<button id="multiply">*</button>
+				</div>
+			</div>
+			<div class="row">
+			   	<div class="col-xs-2">
+					<button id="one">1</button>
+					<button id="two">2</button>
+					<button id="three">3</button>
+					<button id="divide">/</button>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-2">
+					<button id="zero">0</button>
+					<button id="period">.</button>
+					<button id="equals">=</button>	
+				</div>
+			</div>
+		</div>	
+	</div>
 </div>
 
 <script type="text/javascript" src="/js/calculator.js"></script>
