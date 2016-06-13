@@ -1,98 +1,13 @@
 (function () { 
 	"use strict"
 
-
-	// var oneButton = document.getElementById('1');
-	// var twoButton = document.getElementById('2');
-	// var threeButton = document.getElementById('3');
-	// var fourButton = document.getElementById('4');
-	// var fiveButton = document.getElementById('5');
-	// var sixButton = document.getElementById('6');
-	// var sevenButton = document.getElementById('7');
-	// var eightButton = document.getElementById('8');
-	// var nineButton = document.getElementById('9');
-	// var equalsButton = document.getElementById('=');
-	// var plusButton = document.getElementById('+');
-	// var minusButton = document.getElementById('-');
-	// var multiplyButton = document.getElementById('*');
-	// var divideButton = document.getElementById('/');
-
-
-
 	// adding listeners to buttons, and putting them in the correct fields
-	var listenerZero = function (click0) {
-		var fieldOne = document.getElementById("fieldOne");
-		var zeroButton = document.getElementById('zero');
-		getNumber(0);
+	
+	var listenerDigit = document.getElementsByClassName("digit");
+	for (var i = 0; i < listenerDigit.length; i++) {
+		listenerDigit[i].addEventListener('click', getNumber, false);
 	}
-	document.getElementById("zero").addEventListener('click', listenerZero, false);
-
-
-	var listenerOne = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var oneButton = document.getElementById('one');
-		getNumber(1);
-	}
-	document.getElementById("one").addEventListener('click', listenerOne, false);
-
-	var listenerTwo = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var twoButton = document.getElementById('two');
-		getNumber(2);
-	}
-	document.getElementById("two").addEventListener('click', listenerTwo, false);
-
-
-	var listenerThree = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var threeButton = document.getElementById('three');
-		getNumber(3);
-	}
-	document.getElementById("three").addEventListener('click', listenerThree, false);
-
-
-	var listenerFour = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var fourButton = document.getElementById('four');
-		getNumber(4);
-	}
-	document.getElementById("four").addEventListener('click', listenerFour, false);
-
-	var listenerFive = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var fiveButton = document.getElementById('five');
-		getNumber(5);
-	}
-	document.getElementById("five").addEventListener('click', listenerFive, false);
-
-	var listenerSix = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var sixButton = document.getElementById('six');
-		getNumber(6);
-	}
-	document.getElementById("six").addEventListener('click', listenerSix, false);
-
-	var listenerSeven = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var sevenButton = document.getElementById('seven');
-		getNumber(7);
-	}
-	document.getElementById("seven").addEventListener('click', listenerSeven, false);
-
-	var listenerEight = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var eightButton = document.getElementById('eight');
-		getNumber(8);
-	}
-	document.getElementById("eight").addEventListener('click', listenerEight, false);
-
-	var listenerNine = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var nineButton = document.getElementById('nine');
-		getNumber(9);
-	}
-	document.getElementById("nine").addEventListener('click', listenerNine, false);
-
+	
 	var listenerPlus = function (click) {
 		var operator = document.getElementById("operator");
 		var plusButton = document.getElementById('plus');
@@ -140,46 +55,85 @@
 	}
 	document.getElementById("equals").addEventListener('click', listenerEquals, false);
 
+	var listenerDecimal = function (click) {
+		var fieldOne = document.getElementById("fieldOne");
+		var decimalButton = document.getElementById('decimal');
+		getNumber(".");
+	}
+	document.getElementById("decimal").addEventListener('click', listenerDecimal, false);
+
+	var listenerPlusMinus = function (click) {
+		var fieldOne = document.getElementById("fieldOne");
+		var plusMinusButton = document.getElementById('plusMinus');
+		plusMinus();
+	}
+	document.getElementById("plusMinus").addEventListener('click', listenerPlusMinus, false);
+
+	var listenerPercentage = function (click) {
+		var fieldOne = document.getElementById("fieldOne");
+		var percentageButton = document.getElementById('percentage');
+		getPercentage();
+	}
+	document.getElementById("percentage").addEventListener('click', listenerPercentage, false);
 
 
-	function getNumber(num) {
+	function getNumber() {
 		if (document.getElementById("operator").value == "") {
-			document.getElementById("fieldOne").value += num;
+			document.getElementById("fieldOne").value += this.innerText;
 		} else {
-			document.getElementById("fieldTwo").value += num;
+			document.getElementById("fieldTwo").value += this.innerText;
 		}
 	}
 
 
+	function plusMinus(){
+		if (document.getElementById("operator").value == "") {
+			document.getElementById("fieldOne").value = Number(document.getElementById("fieldOne").value) * -1;
+		} else {
+			document.getElementById("fieldTwo").value = Number(document.getElementById("fieldTwo").value) * -1;
+		}
+
+	}
+
+	function getPercentage(){
+		if (document.getElementById("operator").value == "") {
+			document.getElementById("fieldOne").value = Number(document.getElementById("fieldOne").value) / 100;
+		} else {
+			document.getElementById("fieldTwo").value = Number(document.getElementById("fieldTwo").value) / 100;
+		}
+	}
+
+
+
 	function result() {
 	var operatorField = document.getElementById("operator").value;
-	var firstField = parseInt(document.getElementById("fieldOne").value);
-	var secondField = parseInt(document.getElementById("fieldTwo").value);
+	var firstField = Number(document.getElementById("fieldOne").value);
+	var secondField = Number(document.getElementById("fieldTwo").value);
 	var result;
 	switch(operatorField){
 		case "+":
-        	result = firstField + secondField; 
-       		document.getElementById("operator").value = "";
-        	document.getElementById("fieldTwo").value = "";
-        	break;
-    case "-":
-	    	result = firstField - secondField; 
-	    	document.getElementById("operator").value = "";
-	        document.getElementById("fieldTwo").value = "";
-	    	break;
-    case "*":
-	    	result = firstField * secondField; 
-	    	document.getElementById("operator").value = "";
-	        document.getElementById("fieldTwo").value = "";
-	    	break;
-    case "/":
-	    	result = firstField / secondField;
-	    	document.getElementById("operator").value = "";
-	        document.getElementById("fieldTwo").value = ""; 
-	    	break;
+				result = firstField + secondField; 
+				document.getElementById("operator").value = "";
+				document.getElementById("fieldTwo").value = "";
+				break;
+		case "-":
+				result = firstField - secondField; 
+				document.getElementById("operator").value = "";
+				document.getElementById("fieldTwo").value = "";
+				break;
+		case "*":
+				result = firstField * secondField; 
+				document.getElementById("operator").value = "";
+				document.getElementById("fieldTwo").value = "";
+				break;
+		case "/":
+				result = firstField / secondField;
+				document.getElementById("operator").value = "";
+				document.getElementById("fieldTwo").value = ""; 
+				break;
 	}
 	
-	document.getElementById("fieldOne").value = result;
+	document.getElementById("fieldOne").value = result.toFixed(2);
 	}
 
 
