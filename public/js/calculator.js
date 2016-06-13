@@ -56,7 +56,7 @@
 	}
 	document.getElementById("equals").addEventListener('click', listenerEquals, false);
 
-	document.getElementById("decimal").addEventListener('click', getNumber, false))
+	document.getElementById("decimal").addEventListener('click', getNumber, false);
 
 	var listenerPlusMinus = function (click) {
 		var fieldOne = document.getElementById("fieldOne");
