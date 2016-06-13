@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Google Maps</title>
+		<style>	
+			#map {
+				height: 600px;
+			}
+		</style>
+	</head>
+	<body>
+		<div id="map"></div>
+
+		<!-- Load the Google Maps API [DON'T FORGET TO USE A KEY] -->
+		<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHITQ3RChA0cE-XG9-ujWjQH_6aTjnbag"></script>
+
+			<!-- Script to show address on map -->
+		<script type="text/javascript">
+			(function() {
+				"use strict";
+
+				// Set our map options
+				var mapOptions = {
+					// Set the zoom level
+					zoom: 12,
+
+					// This sets the center of the map at our location
+					center: {
+						lat:  29.4437787,
+						lng: -98.4794078
+					},
+
+				};
+
+				// Render the map
+				var map = new google.maps.Map(document.getElementById("map"), mapOptions);
+
+				var geocoder = new google.maps.Geocoder();
+
+				// Include code from previous example
+
+				// Set our address to geocode
+				var address = "200 E Grayson St, San Antonio, TX 78215";
+
+				// Init geocoder object
+				var geocoder = new google.maps.Geocoder();
+				// var address = "400 east huisache san antonio tx 78212";
+
+				// Geocode our address
+				geocoder.geocode({ "address": address }, function(results, status) {
+
+				   // Check for a successful result
+				   if (status == google.maps.GeocoderStatus.OK) {
+
+					   // Recenter the map over the address
+					   map.setCenter(results[0].geometry.location);
+				   } else {
+
+					   // Show an error message with the status if our request fails
+					   alert("Geocoding was not successful - STATUS: " + status);
+				   }
+				});
+
+				// Create lat and long for our marker position
+				var restaurantOne = { lat: 29.4437787, lng: -98.4794078};
+
+				var restaurantTwo = { lat: 29.4842991, lng: -98.413348};
+
+				var restaurantThree = { lat: 29.4112468, lng: -98.4869666};
+
+				var restaurantFour = { lat: 29.429678, lng: -98.54095};
+
+				var restaurantFive = { lat: 29.464171, lng: -98.5076248};
+
+				var restaurantSix = { lat: 29.4174861, lng: -98.4903767};
+
+				var restaurantSeven = {lat: 29.4900531, lng: -98.4445841};
+
+				// Add the marker to our existing map
+				var markerOne = new google.maps.Marker({
+					position: restaurantOne,
+					map: map
+				});
+
+				var markerTwo = new google.maps.Marker({
+					position: restaurantTwo,
+					map: map
+				});
+
+				var markerThree = new google.maps.Marker({
+					position: restaurantThree,
+					map: map
+				});
+
+				var markerFour = new google.maps.Marker({
+					position: restaurantFour,
+					map: map
+				});
+
+				var markerFive = new google.maps.Marker({
+					position: restaurantFive,
+					map: map
+				});
+
+				var markerSix = new google.maps.Marker({
+					position: restaurantSix,
+					map: map
+				});
+
+				var markerSeven = new google.maps.Marker({
+					position: restaurantSeven,
+					map: map
+				});
+
+				// Create a new infoWindow object with content
+				var infowindowOne = new google.maps.InfoWindow({
+					content: "Il Sogno"
+				});
+
+				// Open the window using our map and marker
+				infowindowOne.open(map, markerOne);
+
+			})();
+		</script>
+	</body>
+</html>
+
+
+KEY = AIzaSyAHITQ3RChA0cE-XG9-ujWjQH_6aTjnbag
