@@ -53,6 +53,7 @@ button#clear:hover {
 	border: 2px solid black;
 	background-color: #E4DFDF;
 	border-radius: 10px;
+
 }
 
 #operator {
@@ -63,6 +64,7 @@ button#clear:hover {
 	border: 2px solid black;
 	background-color: #E4DFDF;
 	border-radius: 10px;
+	text-align: center;
 }
 
 .operationSigns {

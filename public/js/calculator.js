@@ -47,6 +47,7 @@
 	}
 	document.getElementById("clear").addEventListener('click', listenerClear, false);
 
+
 	var listenerEquals = function (click) {
 		var fieldOne = document.getElementById("fieldOne");
 		var equalsButton = document.getElementById('equals');
@@ -55,12 +56,7 @@
 	}
 	document.getElementById("equals").addEventListener('click', listenerEquals, false);
 
-	var listenerDecimal = function (click) {
-		var fieldOne = document.getElementById("fieldOne");
-		var decimalButton = document.getElementById('decimal');
-		getNumber(".");
-	}
-	document.getElementById("decimal").addEventListener('click', listenerDecimal, false);
+	document.getElementById("decimal").addEventListener('click', getNumber, false))
 
 	var listenerPlusMinus = function (click) {
 		var fieldOne = document.getElementById("fieldOne");
