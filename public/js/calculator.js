@@ -153,14 +153,14 @@
 
 	function result() {
 	var operatorField = document.getElementById("operator").value;
-	var firstField = document.getElementById("fieldOne").value;
-	var secondField = document.getElementById("fieldTwo").value;
+	var firstField = parseInt(document.getElementById("fieldOne").value);
+	var secondField = parseInt(document.getElementById("fieldTwo").value);
 	var result;
 	switch(operatorField){
 		case "+":
         	result = firstField + secondField; 
-       		parseInt(document.getElementById("operator").value) = "";
-        	parseInt(document.getElementById("fieldTwo").value) = "";
+       		document.getElementById("operator").value = "";
+        	document.getElementById("fieldTwo").value = "";
         	break;
     case "-":
 	    	result = firstField - secondField; 
