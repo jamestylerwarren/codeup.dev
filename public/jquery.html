@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>JQuery</title>
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+	</head>
+	<body>
+
+
+		<H1 class="codeup" id="topHeader">Tyler Warren</H1>
+		<p class="codeup" id="topPara">....is a master dev in:</p>
+		<ul class="pageOne" id="topUL">
+			<li class="pageOne" id="firstLi">html</li>
+			<li class="pageOne" id="secondLi">css</li>
+			<li class="pageOne" id="thirdLi">javascript</li>
+			<li class="pageOne" id="fourthLi">jquery</li>
+		</ul>	
+		<div class="pageOne" id="toDiv">
+			<p>Hello World</p>
+		</div>
+
+		<script>
+			"use strict"
+
+			$(document).ready(function() {
+				$('li').css('font-size', '25px');
+
+				$('h1, p, li').css('background-color', 'orange');
+
+				var contents = $('h1').html();
+				alert(contents);
+			});
+			
+
+
+
+
+		</script>
+
+
+
+
+
+		
+
+	</body>
+</html>
+
+
