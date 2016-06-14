@@ -4,7 +4,7 @@
 		<title>Google Maps</title>
 		<style>	
 			#map {
-				height: 600px;
+				height: 800px;
 			}
 		</style>
 	</head>
@@ -62,51 +62,71 @@
 				});
 
 				// Create lat and long for our marker position
+
+				//Il Sogno
 				var restaurantOne = { lat: 29.4437787, lng: -98.4794078};
 
+				// Thai House
 				var restaurantTwo = { lat: 29.4842991, lng: -98.413348};
 
+				// Bliss
 				var restaurantThree = { lat: 29.4112468, lng: -98.4869666};
 
+				// Siete Mar
 				var restaurantFour = { lat: 29.429678, lng: -98.54095};
 
+				//Chris Madrids
 				var restaurantFive = { lat: 29.464171, lng: -98.5076248};
 
+				// FIlling Station
 				var restaurantSix = { lat: 29.4174861, lng: -98.4903767};
 
+				//Thousand Oaks
 				var restaurantSeven = {lat: 29.4900531, lng: -98.4445841};
 
+
+
+
+
 				// Add the marker to our existing map
+
+				// Il Sogno
 				var markerOne = new google.maps.Marker({
 					position: restaurantOne,
 					map: map
 				});
 
+				// Thai House
 				var markerTwo = new google.maps.Marker({
 					position: restaurantTwo,
-					map: map
+				 	map: map
 				});
 
+				//Bliss
 				var markerThree = new google.maps.Marker({
 					position: restaurantThree,
 					map: map
 				});
 
+				//Siete Mar
 				var markerFour = new google.maps.Marker({
 					position: restaurantFour,
 					map: map
 				});
 
+				// Chris Madrids
 				var markerFive = new google.maps.Marker({
 					position: restaurantFive,
 					map: map
 				});
 
+				//Filling Stattion
 				var markerSix = new google.maps.Marker({
 					position: restaurantSix,
 					map: map
 				});
-
+				
+				//Thousand Oaks
 				var markerSeven = new google.maps.Marker({
 					position: restaurantSeven,
 					map: map
@@ -126,4 +146,3 @@
 </html>
 
 
-KEY = AIzaSyAHITQ3RChA0cE-XG9-ujWjQH_6aTjnbag
