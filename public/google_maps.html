@@ -65,101 +65,93 @@
 				var markers = [
 					{	//Il Sogno
 						"position": {lat: 29.4437787, lng: -98.4794078}, 
-						"icon": "/img/ItalyFlag.png"
+						"icon": "/img/ItalyFlag.png",
+						"content": "<h1>Osteria Il Sogno</h1>200 E Grayson St<br>San Antonio, TX 78215<br><img src='/img/il-sogno.jpg' alt='Osteria Il Sogno'>"
 					},
 					
 					{	//Thai House
 						"position": {lat: 29.4842991, lng: -98.413348}, 
-						"icon": "/img/ThaiFlag.png"
+						"icon": "/img/ThaiFlag.png",
+						"content": "<h1>Thai House</h1>4114 Rittiman Rd<br>San Antonio, TX 78218<br><img src='/img/ThaiHouse.jpg' alt='Thai House'>"
 						
 					},
 					{	//Bliss
 						"position": {lat: 29.4112468, lng: -98.4869666}, 
-						"icon": "/img/AmericaFlag.png"
+						"icon": "/img/AmericaFlag.png",
+						"content": "<h1>Bliss</h1>926 S Presa St<br>San Antonio, TX 78210<br><img src='/img/Bliss.jpg' alt='Bliss'>"
 						
 					},
 					{	//Siete Mares
 						"position": {lat: 29.429678, lng: -98.54095}, 
-						"icon": "/img/MexicoFlag.png"
+						"icon": "/img/MexicoFlag.png",
+						"content": "<h1>Siete Mares</h1>3831 W Commerce St<br>San Antonio, TX 78207<br><img src='/img/SieteMares.jpg' alt='Siete Mares'>"
 						
 					},
 					{	//Chris Madrid's
 						"position": {lat: 29.464171, lng: -98.5076248}, 
-						"icon": "/img/AmericaFlag.png"
+						"icon": "/img/AmericaFlag.png",
+						"content": "<h1>Chris Madrid's</h1>1900 Blanco Rd<br>San Antonio, TX 78201<br><img src='/img/chrismadrids.jpg' alt='Chirs Madrid's>"
 						
 					},
 					{	//Filling Station
 						"position": {lat: 29.4174861, lng: -98.4903767}, 
-						"icon": "/img/AmericaFlag.png"
+						"icon": "/img/AmericaFlag.png",
+						"content": "<h1>Filling Station Tap Room</h1>701 S Saint Marys St<br>San Antonio, TX 78204<br><img src='/img/FillingStation.jpg' alt='Filling Station'>"
 						
 					},
 					{	//Thousand Oaks Cafe
 						"position": {lat: 29.4900531, lng: -98.4445841}, 
-						"icon": "/img/MexicoFlag.png"
+						"icon": "/img/MexicoFlag.png",
+						"content": "<h1>Thousand Oaks Cafe</h1>1271 Austin Hwy<br>San Antonio, TX 78209<br><img src='/img/thousandoaks.jpg' alt='Thousand Oaks Cafe'>"
 						
 					},
 				];
+				var prev_infowindow = false;
 				function setMarker(){
-					for(var i = 0; i < markers.length; i++){
+					markers.forEach(function(markerInfo) {
+						var marker = new google.maps.Marker({
+							 position: markerInfo.position,
+							 map: map,
+							 icon: markerInfo.icon
+						});
 
-					    var marker = new google.maps.Marker({
-					         position: markers[i].position,
-					         map: map,
-					         icon: markers[i].icon
-					    });
-					}
-				} 
+						var infoWindow = new google.maps.InfoWindow({
+							 content: markerInfo.content
+						});
+						
+						google.maps.event.addListener (marker, 'click', function() {
+							if (prev_infowindow) {
+					           prev_infowindow.close();
+					        }
+
+					        prev_infowindow = infoWindow;
+							infoWindow.open(map, this);
+						})
+					})
+
+
+					// for(var i = 0; i < markers.length; i++){
+
+					// 	var marker = new google.maps.Marker({
+					// 		 position: markers[i].position,
+					// 		 map: map,
+					// 		 icon: markers[i].icon
+					// 	});
+
+					// 	markers[i].infoWindow = new google.maps.InfoWindow({
+					// 		 content: markers[i].content
+					// 	});
+						
+					// 	google.maps.event.addListener (marker, 'click', function() {
+					// 		markers[i].infoWindow.open(map, this);
+					// 	})
+					// }
+				}; 
 				setMarker();
 
 
-				// Array for all infoWindows
-				var setInfoWindows = [
-					{	//Il Sogno
-						"content": "<h1>Osteria Il Sogno</h1>200 E Grayson St<br>San Antonio, TX 78215<br><img src='/img/il-sogno.jpg' alt='Osteria Il Sogno'>", 
-						"position": markers[0].position
-					},
-					
-					{	//Thai House
-						"content": "<h1>Thai House</h1>4114 Rittiman Rd<br>San Antonio, TX 78218<br><img src='/img/ThaiHouse.jpg' alt='Thai House'>", 
-						"position": markers[1].position
-						
-					},
-					{	//Bliss
-						"content": "<h1>Bliss</h1>926 S Presa St<br>San Antonio, TX 78210<br><img src='/img/Bliss.jpg' alt='Bliss'>", 
-						"position": markers[2].position
-						
-					},
-					{	//Siete Mares
-						"content": "<h1>Siete Mares</h1>3831 W Commerce St<br>San Antonio, TX 78207<br><img src='/img/SieteMares.jpg' alt='Siete Mares'>", 
-						"position": markers[3].position
-						
-					},
-					{	//Chris Madrid's
-						"content": "<h1>Chris Madrid's</h1>1900 Blanco Rd<br>San Antonio, TX 78201<br><img src='/img/chrismadrids.jpg' alt='Chirs Madrid's>", 
-						"position": markers[4].position
-						
-					},
-					{	//Filling Station
-						"content": "<h1>Filling Station Tap Room</h1>701 S Saint Marys St<br>San Antonio, TX 78204<br><img src='/img/FillingStation.jpg' alt='Filling Station'>",
-						"position": markers[5].position
-						
-					},
-					{	//Thousand Oaks Cafe
-						"content": "<h1>FThousand Oaks Cafe</h1>1271 Austin Hwy<br>San Antonio, TX 78209<br><img src='/img/thousandoaks.jpg' alt='Thousand Oaks Cafe'>", 
-						"position": markers[6].position
-						
-					},
-				];
-				function setInfoWindow(){
-					for(var i = 0; i < setInfoWindows.length; i++){
+			
 
-					    var infoWindow = new google.maps.InfoWindow({
-					         content: setInfoWindows[i].content,
-					         position: setInfoWindows[i].position
-					    });
-					}
-				} 
-				setInfoWindows();
 
 
 
