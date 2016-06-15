@@ -27,15 +27,37 @@
 			<dt>Name the deepest lake in the US?</dt>
 			<dd class="invisible">Crater Lake</dd>
 			<dt>Which park has the lowest elevation?</dt>
-			<dd class="invisible">Dearh Valley National Park</dd>
+			<dd class="invisible">Death Valley National Park</dd>
 			<dt>Name the highest mountain in the contiguous United States?</dt>
 			<dd class="invisible">Mount Whitney</dd>
 			<dt>Yellow Stone National Park is home to a volcano responsible for three of the world's six biggest eruptions. Name that volcano.</dt>
 			<dd class="invisible">The Yelowstone Caldera</dd>
 		</dl>
 
-
 		<button>See Answers</button>
+
+		<h3>Yellowstone National Park</h3>
+		<ul>
+			<li>It was the first national park</li>
+			<li>Created by President Grant in 1872</li>
+			<li>Home to the Yellowstone Caldera</li>
+		</ul>
+		<h3>Enchanted Rock</h3>
+		<ul>
+			<li>Located in Fredericksbur, TX</li>
+			<li>No alcohol allowed</li>
+			<li>As of March 1st, dogs are not allowed on the Summit Trail</li>
+		</ul>
+		<h3>Hot Springs National Park</h3>
+		<ul>
+			<li>Located in Hot Springs, AR</li>
+			<li>It is the smallest national park in the US</li>
+			<li>The water is thought to possess medicinal properties</li>
+		</ul>
+
+
+
+		
 
 
 		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
@@ -48,6 +70,15 @@
 				});
 	
 
+			$('ul').each(function(index, element) {
+				$(element).children().first().css('font-weight', 'bold');
+			});
+
+			$('li').click(function() {
+				$(this).parent().toggleClass('invisible');
+			});
+
+		
 
 
 
