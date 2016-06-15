@@ -15,24 +15,29 @@
 			<li class="pageOne" id="thirdLi">javascript</li>
 			<li class="pageOne" id="fourthLi">jquery</li>
 		</ul>	
-		<div class="pageOne" id="toDiv">
+		<div id="toDiv">
 			<p>Hello World</p>
 		</div>
 
 		<script>
-
-		
 			"use strict"
 
 			$(document).ready(function() {
-				$('li').css('font-size', '25px');
-
-				$('h1, p, li').css('background-color', 'orange');
-
-				var contents = $('h1').html();
-				alert(contents);
+				$('#topHeader').click(function() {
+					$(this).css('background-color', 'orange');
+				});
+				$('#topPara').dblclick(function() {
+					$(this).css('font-size', '24px');
+				});
+				$('.pageOne').hover(
+					function() {
+						$(this).css('color', 'red')
+					},
+					function(){
+						$(this).css('color', 'white')
+					}
+				);
 			});
-
 
 		</script>
 
