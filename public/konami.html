@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Konami</title>
+		
+	</head>
+	<body>
+		<h1>Konami Code</h1>
+
+		<input class="konamiField" type="textfield">
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		<script>
+			"use strict";
+
+				var keyStrokes = [38, 38, 40, 40, 37, 39, 37, 39, 66, 65, 13];
+
+				var strokeNum = 0;
+
+
+				$('.konamiField').keyup(function(event){
+					console.log(event.keyCode);
+					if (keyStrokes[strokeNum] == event.keyCode) {
+						strokeNum++;
+					} else {
+						strokeNum = 0;
+					}
+
+					if (keyStrokes[10] == event.keyCode) {
+						$('h1').css({'background-color': 'blue', 'font-size': '50px'});
+						strokeNum = 0;
+					};
+				});
+
+
+
+				// $('.konamiField').keyup(function(event){
+				// 	console.log(event.keyCode);
+				// 	if (keyStrokes[strokeNum] == event.keyCode && keyStrokes[10] == event.keyCode) {
+				// 			alert('You have added 30 lives!');
+				// 		};
+
+				// 	strokeNum++;
+				// });
+
+				
+
+				
+			
+
+				
+
+
+
+		</script>
+		
+	</body>
+</html>

@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<title>JQuery</title>
-		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+		
 	</head>
 	<body>
 
@@ -19,16 +19,26 @@
 			<p>Hello World</p>
 		</div>
 
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
 		<script>
 			"use strict"
 
-			$(document).ready(function() {
-				$('#topHeader').click(function() {
-					$(this).css('background-color', 'orange');
-				});
+				$('#topHeader').hover(
+					function() {
+						$(this).css('background-color', 'orange');
+					},
+					function(){
+						$(this).css('background-color', 'white')
+					}
+				);
+
+
 				$('#topPara').dblclick(function() {
 					$(this).css('font-size', '24px');
 				});
+
+				
 				$('.pageOne').hover(
 					function() {
 						$(this).css('color', 'red')
@@ -37,15 +47,8 @@
 						$(this).css('color', 'white')
 					}
 				);
-			});
 		</script>
-
-
-
-
-
 		
-
 	</body>
 </html>
 
