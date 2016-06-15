@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>jquery_faq</title>
+		<style>
+		.invisible {
+			display: none;
+		}
+		</style>
+
+	</head>
+	<body>	
+		<h1>10 FAQs about National Parks</h1>
+		<dl>
+			<dt>How many square acres do national parks encompass?</dt>
+			<dd class="invisible">51 million</dd>
+			<dt>Which was the first national park?</dt>
+			<dd class="invisible">Yellowstone National Park</dd>
+			<dt>Which president created the first national park?</dt>
+			<dd class="invisible">President Grant in 1872</dd>
+			<dt>Which park is the smallest national park in terms of acres?</dt>
+			<dd class="invisible">Hot Springs National Park in AR</dd>
+			<dt>Which states is the only state without a national park?</dt>
+			<dd class="invisible">Delaware</dd>
+			<dt>What river runs through the Grandy Canyon National park?</dt>
+			<dd class="invisible">Colorado River</dd>
+			<dt>Name the deepest lake in the US?</dt>
+			<dd class="invisible">Crater Lake</dd>
+			<dt>Which park has the lowest elevation?</dt>
+			<dd class="invisible">Dearh Valley National Park</dd>
+			<dt>Name the highest mountain in the contiguous United States?</dt>
+			<dd class="invisible">Mount Whitney</dd>
+			<dt>Yellow Stone National Park is home to a volcano responsible for three of the world's six biggest eruptions. Name that volcano.</dt>
+			<dd class="invisible">The Yelowstone Caldera</dd>
+		</dl>
+
+
+		<button>See Answers</button>
+
+
+		<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+
+		<script>
+			
+
+			$('button').click(function() {
+					$('dd').toggleClass('invisible');
+				});
+	
+
+
+
+
+		</script>
+		
+	</body>
+</html>
