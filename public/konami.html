@@ -18,7 +18,7 @@
 
 				var strokeNum = 0;
 
-
+				var audio
 				$('.konamiField').keyup(function(event){
 					console.log(event.keyCode);
 					if (keyStrokes[strokeNum] == event.keyCode) {
@@ -28,9 +28,8 @@
 					}
 
 					if (keyStrokes.length == strokeNum) {
-						$('h1').css({'background-color': 'blue', 'font-size': '50px'});
-						strokeNum = 0;
-					};
+						$('body').css('background-image', 'url(\'/img/winning.png\')');
+					}
 				});
 
 
