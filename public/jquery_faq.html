@@ -13,25 +13,25 @@
 		<h1>10 FAQs about National Parks</h1>
 		<dl>
 			<dt>How many square acres do national parks encompass?</dt>
-			<dd class="invisible">51 million</dd>
+			<dd>51 million</dd>
 			<dt>Which was the first national park?</dt>
-			<dd class="invisible">Yellowstone National Park</dd>
+			<dd>Yellowstone National Park</dd>
 			<dt>Which president created the first national park?</dt>
-			<dd class="invisible">President Grant in 1872</dd>
+			<dd>President Grant in 1872</dd>
 			<dt>Which park is the smallest national park in terms of acres?</dt>
-			<dd class="invisible">Hot Springs National Park in AR</dd>
+			<dd>Hot Springs National Park in AR</dd>
 			<dt>Which states is the only state without a national park?</dt>
-			<dd class="invisible">Delaware</dd>
+			<dd>Delaware</dd>
 			<dt>What river runs through the Grandy Canyon National park?</dt>
-			<dd class="invisible">Colorado River</dd>
+			<dd>Colorado River</dd>
 			<dt>Name the deepest lake in the US?</dt>
-			<dd class="invisible">Crater Lake</dd>
+			<dd>Crater Lake</dd>
 			<dt>Which park has the lowest elevation?</dt>
-			<dd class="invisible">Death Valley National Park</dd>
+			<dd>Death Valley National Park</dd>
 			<dt>Name the highest mountain in the contiguous United States?</dt>
-			<dd class="invisible">Mount Whitney</dd>
+			<dd>Mount Whitney</dd>
 			<dt>Yellow Stone National Park is home to a volcano responsible for three of the world's six biggest eruptions. Name that volcano.</dt>
-			<dd class="invisible">The Yelowstone Caldera</dd>
+			<dd>The Yelowstone Caldera</dd>
 		</dl>
 
 		<button>See Answers</button>
@@ -66,17 +66,25 @@
 			
 
 			$('button').click(function() {
-					$('dd').toggle('invisible');
-				});
-	
+				$('dd').fadeToggle();
+			});
+			
 
-			$('ul').each(function(index, element) {
-				$(element).children().first().css('font-weight', 'bold');
+			$('h3').click(function() {
+				$(this).next().fadeToggle();
 			});
 
 			$('li').click(function() {
-				$(this).parent().hide('invisible');
-			});
+				$(this).fadeToggle();
+			})
+
+			// $('ul').each(function(index, element) {
+			// 	$(element).children().first().css('font-weight', 'bold');
+			// });
+
+			// $('li').click(function() {
+			// 	$(this).parent().hide('invisible');
+			// });
 
 		
 
