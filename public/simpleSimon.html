@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Simon</title>
+    <style>
+        .color {
+            background-color: green;
+        }
+    </style>
+</head>
+<body>
+    <button class="buttons" type="button" data-value="1" class="blue">1</button>
+    <button class="buttons" type="button" data-value="2" class="red">2</button>
+    <button class="buttons" type="button" data-value="3" class="green">3</button>
+    <button class="buttons" type="button" data-value="4" class="yellow">4</button>
+    <button id="start" class ="start" type="button" class="start">start</button>
+    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+    <script>
+        var solution = [];
+        var buttons = $('.buttons');
+        var index = 0;
+
+        function randomNumber(amount) {
+            var random = Math.floor(Math.random() * (amount) + 1);
+            return random;
+        }
+
+        buttons.each(function() {
+            $(this).click(function() {
+                if (solution[index] == $(this).data('value')) {
+                    index++;
+                    console.log("success.")
+                    solution.push(randomNumber(4));
+                    console.log(solution);
+
+                } else {
+                    index = 0;
+                    solution = [];
+                    console.log("failure.")
+                }
+            });
+        });
+
+        $('#start').click(function() {
+            solution = [];
+            index = 0;
+            solution.push(randomNumber(4));
+            console.log(solution);
+        })
+
+    </script>
+</body>
+</html>
