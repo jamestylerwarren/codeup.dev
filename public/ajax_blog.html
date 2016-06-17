@@ -2,14 +2,73 @@
 <html>
 	<head>
 		<title>Ajax Blog</title>
+		<!-- Latest compiled and minified CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 	</head>
 	<body>
+
+		<div class="page-header">
+		  <h1>Bob Vila's Wild World of Tools<small>  Four items cause that's all I need</small></h1>
+		</div>
+
+		<div id='posts'></div>
+
+
+
+
+
 
 
 
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+		<script>
+		(function() {
+
+			// setTimeout(function(){
+			//   	var helpMe = confirm('Do you need help?');
+			//   	if (helpMe) {
+			//   		alert('Then you should leave - Vila doesn\'t ask for help')
+			//   	} else {
+			//   		alert('Good. Vila doesn\'t ask for help either')
+			//   	}
+			// }, 4000);
+
+			$.ajax('/data/blog.json', {
+				type: 'GET'
+			}).done(function(posts) {
+				posts.forEach(function (entries){	
+					var categories = entries.categories.join(', ');
+					$('#posts').append('<tr><td>' + entries.title + '</td><td>' + entries.content + '</td><td>' + categories + '</td><td>' + entries. date + '</td></tr>');
+				});
+				}).fail(function(){
+					alert('There was an error');
+				}).always(function(){
+					alert('All done');
+				});
+
+			
+			
+			
 
 
+
+
+		})();
+		</script>
+
+
+
+		
+
+
+
+
+
+
+
+
+		<!-- Latest compiled and minified JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
 
 	</body>
 </html>
