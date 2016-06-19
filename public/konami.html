@@ -2,7 +2,11 @@
 <html>
 	<head>
 		<title>Konami</title>
-		
+		<style>
+			body {
+			background-image: none;
+			}
+		</style>
 	</head>
 	<body>
 		<h1>Konami Code</h1>
@@ -18,7 +22,6 @@
 
 				var strokeNum = 0;
 
-				var audio
 				$('.konamiField').keyup(function(event){
 					console.log(event.keyCode);
 					if (keyStrokes[strokeNum] == event.keyCode) {
@@ -28,7 +31,7 @@
 					}
 
 					if (keyStrokes.length == strokeNum) {
-						$('body').css('background-image', 'url(\'/img/winning.png\')');
+						$('body').toggle(500).css('background-image', 'url(\'/img/winning.png\')');
 					}
 				});
 
