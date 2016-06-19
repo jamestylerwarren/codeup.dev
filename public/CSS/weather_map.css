@@ -1,4 +1,66 @@
-.header{
+body {
+	background-color: gray;
+}
+
+
+.header {
 	color: black;
 	font-family: sans-serif;
-};
+	padding: 2%;
+} 
+
+#weatherBoxHeader  {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+#sanAntonioWeatherHeader{
+	border: 2px solid black;
+	width: 96%;
+	height: 280px;
+	padding: 0;
+}
+
+#sanAntonoBoxHeader {
+	margin-top: 5px;
+	margin-bottom: 5px;
+	padding: 5px;
+}
+
+
+.forecast {
+	border: 1px solid black;
+	width: 30%;
+	height: 200px;
+	position: relative;
+	background-color: white;
+	margin: 10px;
+}
+
+#dayZero {
+	position: relative;
+}
+
+#dayTwo {
+	position: relative;
+	left: 33%;
+	bottom: 212;
+}
+
+#dayThree {
+	position: relative;
+	left: 66%;
+	bottom: 424;
+}
+
+#map {
+	border: 2px solid black;
+	width: 96%;
+	height: 250px;
+	padding: 0;
+	margin-top: 10px;
+	height: 500px;
+
+}
+

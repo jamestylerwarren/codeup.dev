@@ -2,17 +2,29 @@
 <head>
 	<link rel="stylesheet" type="text/css" href="/css/weather_map.css">
 	<title>Weather Map</title>
-
 </head>
 <body>
 	<div class="outterWrapper">
 		<div class="wrapper" id="weatherBox">
 			<h1 class="header" id="weatherBoxHeader">Weather Application</h1>
 			<div class="header" id="sanAntonioWeatherHeader">
-				<h2 class="header" id="sanAntonoBoxHeader">San Antonio Weather</h2>
+				<h2 class="header" id="sanAntonoBoxHeader">San Antonio Weather Forecast</h2>
+				<div class="forecast" id="dayZero">
+					<h3 class="header" id="dayZeroWeather">Today's Weather</h3>
+				</div>
+				<div class="forecast" id="dayTwo">
+					<h3 class="header" id="dayTwoWeather">Day Two Forecast</h3>
+				</div>
+				<div class="forecast" id="dayThree">
+					<h3 class="header" id="dayThreeWeather">Day Three Forecast</h3>
+				</div>
 			</div>
 		</div>
-		<div class="map">Map
+
+
+
+		<div id="map">Map
+			<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAHITQ3RChA0cE-XG9-ujWjQH_6aTjnbag"></script>
 		</div>
 	</div>
 
