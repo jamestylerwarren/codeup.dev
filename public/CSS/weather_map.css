@@ -42,16 +42,34 @@ body {
 	position: relative;
 }
 
+#dayZeroWeather {
+	text-align: center;
+	margin: 5px;
+	padding: 3px;
+}
+
 #dayTwo {
 	position: relative;
 	left: 33%;
 	bottom: 212;
 }
 
+#dayTwoWeather {
+	text-align: center;
+	margin: 5px;
+	padding: 3px;
+}
+
 #dayThree {
 	position: relative;
 	left: 66%;
 	bottom: 424;
+}
+
+#dayThreeWeather {
+	text-align: center;
+	margin: 5px;
+	padding: 3px;
 }
 
 #map {

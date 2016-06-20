@@ -29,6 +29,7 @@
 	$.ajax('/data/inventory.json', {
 		type: 'GET'
 	}).done(function(inventory) {
+		console.log(inventory);
 		inventory.forEach(function (tools){	
 			var categories = tools.categories.join(', ');
 			$('#insertProducts').append('<tr><td>' + tools.title + '</td><td>' + tools.quantity + '</td><td>' + tools.price + '</td><td>' + categories + '</td></tr>');
