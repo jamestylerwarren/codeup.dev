@@ -75,6 +75,15 @@ body {
 	padding: 3px;
 }
 
+#coordinates {
+	margin: 5px;
+	padding: 3px;
+}
+
+#userInput {
+	text-align: center;
+}
+
 #map {
 	width: 93%;
 	padding: 0;

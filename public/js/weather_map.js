@@ -1,31 +1,28 @@
 (function() {
 "use strict";
-
-
 		//------------Map Rendering---------------
 	var marker;
 	function setMap() {
 		var map = new google.maps.Map(document.getElementById("map"), {
-			zoom: 8,
+			zoom: 4,
 			center: {
 				lat: 29.426791,
 				lng: -98.489602
-			}
-		});
+			},
+			styles: [{"featureType":"administrative","elementType":"labels.text.fill","stylers":[{"color":"#444444"}]},{"featureType":"landscape","elementType":"all","stylers":[{"color":"#f2f2f2"}]},{"featureType":"poi","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"road","elementType":"all","stylers":[{"saturation":-100},{"lightness":45}]},{"featureType":"road.highway","elementType":"all","stylers":[{"visibility":"simplified"}]},{"featureType":"road.arterial","elementType":"labels.icon","stylers":[{"visibility":"off"}]},{"featureType":"transit","elementType":"all","stylers":[{"visibility":"off"}]},{"featureType":"water","elementType":"all","stylers":[{"color":"#4f595d"},{"visibility":"on"}]}]
+			});
 		marker = new google.maps.Marker({
 			position: map.center,
 			map: map,
 			draggable: true,
 			icon: '/img/pin.png'
-		});		
+		});
 		marker.addListener('dragend',function(event) {
 		getWeather();
         });
 	}; setMap();
 
-
-	//---------Weather Forecast-----------
-	
+	//---------Weather Forecast-----------	
 	function getWeather() {
 		$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 			APPID: "6591e56be16ed754b9738e7806c46382",
