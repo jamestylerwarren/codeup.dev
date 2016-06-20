@@ -16,10 +16,10 @@ body {
 }
 
 #sanAntonioWeatherHeader{
-	border: 2px solid black;
 	width: 96%;
 	height: 280px;
 	padding: 0;
+	background-color: transparent;
 }
 
 #sanAntonoBoxHeader {
@@ -40,6 +40,7 @@ body {
 
 #dayZero {
 	position: relative;
+	text-align: center;
 }
 
 #dayZeroWeather {
@@ -52,6 +53,7 @@ body {
 	position: relative;
 	left: 33%;
 	bottom: 212;
+	text-align: center;
 }
 
 #dayTwoWeather {
@@ -64,6 +66,7 @@ body {
 	position: relative;
 	left: 66%;
 	bottom: 424;
+	text-align: center;
 }
 
 #dayThreeWeather {
@@ -73,12 +76,10 @@ body {
 }
 
 #map {
-	border: 2px solid black;
-	width: 96%;
-	height: 250px;
+	width: 93%;
 	padding: 0;
 	margin-top: 10px;
-	height: 500px;
+	height: 430px;
 
 }
 
