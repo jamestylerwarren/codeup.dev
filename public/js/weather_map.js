@@ -6,7 +6,7 @@
 	var marker;
 	function setMap() {
 		var map = new google.maps.Map(document.getElementById("map"), {
-			zoom: 10,
+			zoom: 8,
 			center: {
 				lat: 29.426791,
 				lng: -98.489602
@@ -15,7 +15,8 @@
 		marker = new google.maps.Marker({
 			position: map.center,
 			map: map,
-			draggable: true
+			draggable: true,
+			icon: '/img/pin.png'
 		});		
 		marker.addListener('dragend',function(event) {
 		getWeather();
