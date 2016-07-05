@@ -10,3 +10,8 @@
 	echo $names[1] . PHP_EOL;
 	echo $names[2] . PHP_EOL;
 	echo $names[3] . PHP_EOL;
+
+
+	// do {
+	// 	echo 'The name at index ' . count($names) . ' is ' . count($names[i] . '.' . PHP_EOL;
+	// } while count($names)
