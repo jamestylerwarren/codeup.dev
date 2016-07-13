@@ -1,7 +1,16 @@
 <?php
 
-$favThings = ['big butts (I can\'t lie)', 'when you look in the mirror and you know you look stupid fly', 'law & order episodes (the original)', 'short phone conversations', 'Saturdays', 'anything but soft rock', 'free food', 'when stuff works the first time', 'when your jam comes on in da club', 'zebras'];
+function pageController() {
 
+	$favThings = [];
+
+	$favThings['things'] = ['big butts (I can\'t lie)', 'when you look in the mirror and you know you look stupid fly', 'law & order episodes (the original)', 'short phone conversations', 'Saturdays', 'anything but soft rock', 'free food', 'when stuff works the first time', 'when your jam comes on in da club', 'zebras'];
+
+	return $favThings;
+
+}
+
+extract(pageController());
 ?>
 <!DOCTYPE html>
 
@@ -15,8 +24,8 @@ $favThings = ['big butts (I can\'t lie)', 'when you look in the mirror and you k
 			<th>My Favorite Things</th>
 		</tr>
 
-		<?php foreach ($favThings as $thing) { ?>
-			<tr><td><?php echo $thing; ?></td></tr>
+		<?php foreach ($things as $thing) { ?>
+			<tr><td><?= $thing; ?></td></tr>
 		<?php } ?>
 
 	</table>

@@ -19,6 +19,6 @@ function randomGenerator($adjectives, $nouns) {
 	<title>Random Generator</title>
 </head>
 <body>
-	<h1><?php echo randomGenerator($adjectives, $nouns) ?></h1>
+	<h1><?= randomGenerator($adjectives, $nouns) ?></h1>
 </body>
 </html>
