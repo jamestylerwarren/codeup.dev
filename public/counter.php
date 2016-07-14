@@ -4,14 +4,13 @@
 
 
 function pageController() {
-	$counter = [];
-	$counter['count'] = 0;
+
 	if (isset($_GET['count'])) {
-		$counter['count']++;
+		$count = $_GET['count'];
 	} else {
-		$counter['count']--;
+		$count = 0;
 	}
-	return $counter;
+	return ['count' => $count];
 
 
 
@@ -29,7 +28,7 @@ extract(pageController());
 <body>
 	<h1><?php echo $count; ?></h1>
 
-	<a href="counter.php?up=<?= $count++ ?>">UP</a>
-	<a href="counter.php?down=<?= $count-- ?>">DOWN</a>
+	<a href="counter.php?count=<?= $count + 1 ?>">UP</a>
+	<a href="counter.php?count=<?= $count - 1 ?>">DOWN</a>
 </body>
 </html>
