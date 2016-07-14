@@ -7,9 +7,10 @@ $nouns = ['cucumber', 'phone', 'wife', 'friend', 'food', 'codeup', 'store', 'dog
 function randomGenerator($adjectives, $nouns) {
 	$noun = array_rand($nouns);
 	$adjective = array_rand($adjectives);
-	echo $adjectives[$adjective] . ' ' . $nouns[$noun];
+	return ['adjective' => $adjectives[$adjective], 'noun' => $nouns[$noun]];
 }
 
+extract(randomGenerator($adjectives, $nouns));
 
 ?>
 <!DOCTYPE html>
@@ -19,6 +20,6 @@ function randomGenerator($adjectives, $nouns) {
 	<title>Random Generator</title>
 </head>
 <body>
-	<h1><?= randomGenerator($adjectives, $nouns) ?></h1>
+	<h1><?= $adjective . ' ' . $noun ?></h1>
 </body>
 </html>
