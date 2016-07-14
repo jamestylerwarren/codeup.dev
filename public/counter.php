@@ -26,7 +26,7 @@ extract(pageController());
 	<title>Counter</title>
 </head>
 <body>
-	<h1><?php echo $count; ?></h1>
+	<h1><?= $count; ?></h1>
 
 	<a href="counter.php?count=<?= $count + 1 ?>">UP</a>
 	<a href="counter.php?count=<?= $count - 1 ?>">DOWN</a>
