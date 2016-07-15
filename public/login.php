@@ -10,13 +10,9 @@ function pagecontroller(){
 	}
 	return ['message' => $message];
 }
-
 extract(pagecontroller());
-
-
 ?>
 <!DOCTYPE html>
-
 <html>
 <head>
 	<meta charset="utf-8">
@@ -28,8 +24,7 @@ extract(pagecontroller());
 	<!-- Bootstrap Core CSS -->
 	<link href="css/bootstrap.min.css" rel="stylesheet">
 
-	<!-- Font Awesome if needed -->
-	<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
 
 
 	<title>Login Page</title>
@@ -118,18 +113,15 @@ extract(pagecontroller());
 	</style>
 </head>
 <body>
-  
+
 	<div id="fullscreen_bg" class="fullscreen_bg"/>
-
 		<div class="container">
-
 			<form class="form-signin" method="POST">
-				<h1 class="form-signin-heading text-muted">Sign In</h1>
+				<h1 class="form-signin-heading text-muted">Welcome</h1>
 				<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
 				<input type="password" name="password" class="form-control" placeholder="Password" required="">
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
 			</form>
-
 		</div>
 	</div>
 
