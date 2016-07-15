@@ -30,6 +30,6 @@ extract(pageController());
 	<h1><?= $score; ?></h1>
 
 	<a href="pong.php?score=<?= $score + 1 ?>">HIT</a>
-	<a href="pong.php?score=<?= $score = 0 ?>">MISS</a>
+	<a href="pong.php?score=0">MISS</a>
 </body>
 </html>

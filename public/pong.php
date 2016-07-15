@@ -23,6 +23,6 @@ extract(pageController());
 	<h1><?= $score; ?></h1>
 
 	<a href="ping.php?score=<?= $score + 1 ?>">HIT</a>
-	<a href="ping.php?score=<?= $score = 0 ?>">MISS</a>
+	<a href="ping.php?score=0">MISS</a>
 </body>
 </html>
