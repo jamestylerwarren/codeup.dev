@@ -1,8 +1,17 @@
 <?php
+
+
+
 function pagecontroller(){
+	session_start();
 	$username = isset($_POST['username']) ? $_POST['username'] : '';
 	$password = isset($_POST['password']) ? $_POST['password'] : '';
+	if (isset($_SESSION['logged_in_user'])) {
+		header('Location: http://codeup.dev/authorized.php');
+		exit();
+	}
 	if ($username === 'guest' && $password === 'password') {
+		$_SESSION['logged_in_user'] = $username;
 		header('Location: http://codeup.dev/authorized.php');
 		exit();
 	} else {

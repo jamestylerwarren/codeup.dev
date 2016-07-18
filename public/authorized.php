@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['logged_in_user'])) {
+		header('Location: http://codeup.dev/login.php');
+		exit();
+?>
 <!DOCTYPE html>
 <html>
 <head>
