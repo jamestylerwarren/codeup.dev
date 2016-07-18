@@ -1,3 +1,52 @@
+<?php
+
+session_start();
+function pagecontroller() {
+    
+    $guess = isset($_POST['guess']) ? $_POST['guess'] : '';
+
+    if ($guess == '') {
+        $hidden = 'hidden';
+    } else {
+        $hidden = '';
+    }
+
+    if (isset($_SESSION['num'])) {
+        $num = $_SESSION['num'];
+    } else {
+        $num = mt_rand(1,100);
+        $_SESSION['num'] = $num;
+    }
+
+
+    $info = 'info';
+    if ($num == $guess){
+        $info = 'success';
+        $message = "Good Guess!";
+        clearSession();
+    } elseif ($num > $guess) {
+        $message = "Higher";
+    } else {
+        $message = "Lower"; 
+    }
+
+    $info = ['num' => $num, 'guess' => $guess, 'hidden' => $hidden, 'info' => $info, 'message' => $message,];
+    return $info;
+}
+
+function clearSession() {
+    // clear $_SESSION array
+    session_unset();
+
+    // delete session data on the server and send the client a new cookie
+    session_regenerate_id(true);
+}
+
+
+extract(pagecontroller());
+
+
+?>
 <!DOCTYPE html>
 <html>
     <head>
@@ -24,8 +73,8 @@
                 <h1>High-Low Game</h1>
             </header>
             <!-- Switch the class from info to success when the user win -->
-            <div class="alert alert-info hidden" role="alert"> <!-- Remove hidden class after first attempt -->
-                <!-- Place the user's feedback here (HIGHER, LOWER or GOOD GUESS!)  -->
+            <div class="alert alert-<?= $info ?> <?= $hidden ?>" role="alert"> <!-- Remove hidden class after first attempt -->
+                <?= $message ?>     
             </div>
             <form method="post">
                 <div class="form-group">
