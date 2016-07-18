@@ -4,15 +4,15 @@
 
 function pagecontroller(){
 	session_start();
-	$username = isset($_POST['username']) ? $_POST['username'] : '';
-	$password = isset($_POST['password']) ? $_POST['password'] : '';
-	if (isset($_SESSION['logged_in_user'])) {
+	$username = isset($_POST['username']) ? $_POST['username'] : ''; //checks if username is present or not
+	$password = isset($_POST['password']) ? $_POST['password'] : ''; //checks if pw is present
+	if (isset($_SESSION['logged_in_user'])) {                       //if there is a session key, redirect to auth page
 		header('Location: http://codeup.dev/authorized.php');
 		exit();
 	}
 	if ($username === 'guest' && $password === 'password') {
 		$_SESSION['logged_in_user'] = $username;
-		header('Location: http://codeup.dev/authorized.php');
+		header('Location: http://codeup.dev/authorized.php'); //direct to auth page when guest and password are entered
 		exit();
 	} else {
 		$message = 'Invalid login. Please try again';
