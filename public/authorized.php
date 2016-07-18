@@ -1,7 +1,15 @@
 <?php
-if (!isset($_SESSION['logged_in_user'])) {
+
+function pagecontroller() {
+	session_start();
+	if (!isset($_SESSION['logged_in_user'])) {
 		header('Location: http://codeup.dev/login.php');
 		exit();
+	}
+	$data['username'] = $_SESSION['logged_in_user'];
+	return $data;
+}
+extract(pagecontroller());
 ?>
 <!DOCTYPE html>
 <html>
@@ -18,25 +26,32 @@ if (!isset($_SESSION['logged_in_user'])) {
 	<title>Authorized</title>
 	<style>
 	.fullscreen_bg {
-			position: fixed;
-			top: 0;
-			right: 0;
-			bottom: 0;
-			left: 0;
-			background-size: cover;
-			background-position: 50% 50%;
-			background-image: url('img/mez4hEM.gif');
-			background-repeat:repeat;
-		}
+		position: fixed;
+		top: 0;
+		right: 0;
+		bottom: 0;
+		left: 0;
+		background-size: cover;
+		background-position: 50% 50%;
+		background-image: url('img/mez4hEM.gif');
+		background-repeat:repeat;
+	}
+	.header {
+		color: white;
+	}
 	</style>
 
 </head>
 <body>
 	
-	<h1>Authorized</h1>
+	
 
-	<div id="fullscreen_bg" class="fullscreen_bg"/></div>
-
+	<div id="fullscreen_bg" class="fullscreen_bg"/>
+		<h1 class="header">Welcome <?= $username ?></h1>
+		<form action='logout.php'>
+			<input type="submit" value="Logout">
+		</form>
+	</div>
 
 
 	<!-- jQuery -->
@@ -48,3 +63,4 @@ if (!isset($_SESSION['logged_in_user'])) {
 
 </body>
 </html>
+
