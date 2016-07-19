@@ -1,12 +1,14 @@
 <?php
+session_start();
+
+require_once 'functions.php';
 
 function pagecontroller() {
-	session_start();
 	if (!isset($_SESSION['logged_in_user'])) {
 		header('Location: http://codeup.dev/login.php');
 		exit();
 	}
-	$data['username'] = $_SESSION['logged_in_user'];
+	$data['username'] = escape($_SESSION['logged_in_user']);
 	return $data;
 }
 extract(pagecontroller());

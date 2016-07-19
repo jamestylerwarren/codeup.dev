@@ -1,17 +1,20 @@
 <?php
-
-
+require_once 'functions.php';
 
 function pagecontroller(){
 	session_start();
-	$username = isset($_POST['username']) ? $_POST['username'] : ''; //checks if username is present or not
-	$password = isset($_POST['password']) ? $_POST['password'] : ''; //checks if pw is present
+	
+	$username = escape(keyCheck('username'));//calling function keyCHeck in functions.php
+	$password = escape(keyCheck('password'));
+	$welcome = escape(keyCheck('welcome'));
+
 	if (isset($_SESSION['logged_in_user'])) {                       //if there is a session key, redirect to auth page
 		header('Location: http://codeup.dev/authorized.php');
 		exit();
 	}
 	if ($username === 'guest' && $password === 'password') {
 		$_SESSION['logged_in_user'] = $username;
+		$_SESSION['welcome'] = $welcome;
 		header('Location: http://codeup.dev/authorized.php'); //direct to auth page when guest and password are entered
 		exit();
 	} else {
@@ -20,7 +23,7 @@ function pagecontroller(){
 	return ['message' => $message];
 }
 extract(pagecontroller());
-?>
+?>	
 <!DOCTYPE html>
 <html>
 <head>
@@ -128,7 +131,7 @@ extract(pagecontroller());
 			<form class="form-signin" method="POST">
 				<h1 class="form-signin-heading text-muted">Welcome</h1>
 				<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
-				<input type="password" name="password" class="form-control" placeholder="Password" required="">
+				<input type="password" name="password" class="form-control" placeholder="Password" required="">				
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
 			</form>
 		</div>
