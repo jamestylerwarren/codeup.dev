@@ -1,33 +1,38 @@
 <?php
-session_start();
 
 include 'middleware.php';
 include 'model.php';
 include 'view.php';
 include 'validation.php';
+
+function pagecontroller() {
 $contacts = loadContacts();
 
-//Search function below
-if (isset($_GET['searchedName'])) {
-    $name = $_GET['searchedName'];
-    $contacts = searchContact($contacts, $name);
-}
+    //Search
+    if (isset($_GET['searchedName'])) {
+        $name = $_GET['searchedName'];
+        if (isValidName($name)) {
+            $contacts = searchContact($contacts, $name);
+        }
+    }
 
-//Save 
-if (isset($_POST['name']) && isset($_POST['number'])) {
-    $name = $_POST['name'];
-    $number = $_POST['number'];
-    $contact = ['name' => $name, 'number' => $number];
-    array_push($contacts, $contact);
-    saveContacts($contacts);
-}
-// Delete:
-if (isset($_GET['name'])) {
-    $name = $_GET['name'];
-    deleteContacts($contacts, $name);
-}
+    //Save 
+    if (isset($_POST['name']) && isset($_POST['number'])) {
+        $name = $_POST['name'];
+        $number = $_POST['number'];
+        $contact = ['name' => $name, 'number' => $number];
+        array_push($contacts, $contact);
+        saveContacts($contacts);
+    }
 
+    // Delete:
+    if (isset($_GET['name'])) {
+        $name = $_GET['name'];
+        deleteContacts($contacts, $name);
+    }
 
+}
+extract($pagecontroller());
     
 ?>
 <!DOCTYPE html>
