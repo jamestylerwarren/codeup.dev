@@ -28,8 +28,9 @@ function deleteContacts(&$contacts, $name)
             unset($contacts[$index]);
         } 
     }
-    fwrite($handle, PHP_EOL . $contact['name'] . '|' . $contact['number']);
-    fclose($handle);
+    saveContacts($contacts);
+    // fwrite($handle, PHP_EOL . $contact['name'] . '|' . $contact['number']);
+    // fclose($handle);
 }
 
 

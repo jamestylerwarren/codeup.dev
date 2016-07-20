@@ -6,11 +6,14 @@ include 'model.php';
 include 'view.php';
 include 'validation.php';
 $contacts = loadContacts();
+
+//Search function below
 if (isset($_GET['searchedName'])) {
     $name = $_GET['searchedName'];
     $contacts = searchContact($contacts, $name);
 }
 
+//Save 
 if (isset($_POST['name']) && isset($_POST['number'])) {
     $name = $_POST['name'];
     $number = $_POST['number'];
@@ -18,10 +21,11 @@ if (isset($_POST['name']) && isset($_POST['number'])) {
     array_push($contacts, $contact);
     saveContacts($contacts);
 }
-// if (isset($_GET['name'])) {
-//     $name = $_GET['name'];
-//     deleteContacts($contacts, $name);
-// }
+// Delete:
+if (isset($_GET['name'])) {
+    $name = $_GET['name'];
+    deleteContacts($contacts, $name);
+}
 
 
     
