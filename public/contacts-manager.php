@@ -9,13 +9,14 @@ $contacts = loadContacts();
 if (isset($_GET['searchedName'])) {
     $name = $_GET['searchedName'];
     $contacts = searchContact($contacts, $name);
-};
+}
 
 if (isset($_POST['name']) && isset($_POST['number'])) {
     $name = $_POST['name'];
     $number = $_POST['number'];
     $contact = ['name' => $name, 'number' => $number];
     array_push($contacts, $contact);
+    saveContacts($contacts);
 }
 // if (isset($_GET['name'])) {
 //     $name = $_GET['name'];
