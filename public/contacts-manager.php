@@ -3,6 +3,8 @@ require 'bootstrap.php';
 
 function frontcontroller() {
     $contacts = loadContacts();
+    $saveMessage = '';
+    $class = 'hidden';
 
     if (isset($_GET['searchedName'])) {
         $contacts = searchName($contacts);
@@ -10,8 +12,8 @@ function frontcontroller() {
 
 
     if (isset($_POST['name']) && isset($_POST['number'])) {
-        saveName($contacts);
-    }
+        extract(saveName($contacts));
+    } 
   
 
     if (isset($_GET['name'])) {
@@ -20,6 +22,8 @@ function frontcontroller() {
 
     return [
         'contacts' => $contacts,
+        'class' => $class,
+        'saveMessage' => $saveMessage,
     ];
 
 }
@@ -130,6 +134,10 @@ extract(frontcontroller());
                                     </span>
                                     Save
                                 </button>
+                                <!-- Switch the class from warning to success when the user win -->
+                                <div class="alert <?= $class ?>" role="alert"> <!-- Remove hidden class after first attempt -->
+                                    <?= $saveMessage ?>     
+                                </div>
                             </div>
                         </div>
                     </form>
