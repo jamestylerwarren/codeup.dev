@@ -1,12 +1,23 @@
 <?php
-
 //Search
-function searchName($contacts) {    
-    $name = $_GET['searchedName'];
-    if (isValidName($name)) {
-        $contacts = searchContact($contacts, trim($name));
+function searchName($contacts) {
+    $data = [
+        'searchMessage' => 'Search result:',
+        'searchClass' => 'alert-success',
+        'contacts' => $contacts
+    ];  
+    $name = $_GET['searchedName'];  
+    $contacts = searchContact($contacts, trim($name));
+    if (isValidName($name) && !empty($contacts)) {
+        $data['searchMessage'] = 'Search results: ';
+        $data['searchClass'] = 'alert-success';
+        $data['contacts'] = searchContact($contacts, trim($name));
+    } else {
+        $data['searchMessage'] = 'No search results';
+        $data['searchClass'] = 'alert-danger';
+        $data['contacts'] = loadContacts();
     }
-    return $contacts;
+    return $data;
 }
 
 //Save
@@ -27,16 +38,8 @@ function saveName(&$contacts) {
     return $data;
 }
 
-
 // Delete:
 function deleteContact(&$contacts) {
     $name = $_GET['name'];
     deleteContacts($contacts, $name);
 }
-
-// function saveContactMessage($hidden, $saveMessage) {
-//     $hidden = '';
-//     $saveMessage = 'Contact Saved!';
-//     return [$hidden, $saveMessage];
-// }
-

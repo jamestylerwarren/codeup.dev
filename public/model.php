@@ -29,8 +29,6 @@ function deleteContacts(&$contacts, $name)
         } 
     }
     saveContacts($contacts);
-    // fwrite($handle, PHP_EOL . $contact['name'] . '|' . $contact['number']);
-    // fclose($handle);
 }
 
 

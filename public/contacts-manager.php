@@ -5,9 +5,11 @@ function frontcontroller() {
     $contacts = loadContacts();
     $saveMessage = '';
     $class = 'hidden';
+    $searchMessage = '';
+    $searchClass = 'hidden';
 
     if (isset($_GET['searchedName'])) {
-        $contacts = searchName($contacts);
+        extract(searchName($contacts));
     }
 
 
@@ -24,10 +26,10 @@ function frontcontroller() {
         'contacts' => $contacts,
         'class' => $class,
         'saveMessage' => $saveMessage,
+        'searchMessage' => $searchMessage,
+        'searchClass' => $searchClass
     ];
-
 }
-
 extract(frontcontroller());
     
 ?>
@@ -73,6 +75,9 @@ extract(frontcontroller());
             </section>
             <article class="row contacts">
                 <section class="col-md-6">
+                    <div class="alert <?= $searchClass ?>" role="alert"> <!-- Remove hidden class after first attempt -->
+                        <?= $searchMessage ?>     
+                    </div>
                     <table class="table table-striped table-bordered table-hover">
                         <thead>
                             <tr>
