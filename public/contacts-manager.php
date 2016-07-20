@@ -1,38 +1,30 @@
 <?php
+require 'bootstrap.php';
 
-include 'middleware.php';
-include 'model.php';
-include 'view.php';
-include 'validation.php';
+function frontcontroller() {
+    $contacts = loadContacts();
 
-function pagecontroller() {
-$contacts = loadContacts();
-
-    //Search
     if (isset($_GET['searchedName'])) {
-        $name = $_GET['searchedName'];
-        if (isValidName($name)) {
-            $contacts = searchContact($contacts, $name);
-        }
+        $contacts = searchName($contacts);
     }
 
-    //Save 
+
     if (isset($_POST['name']) && isset($_POST['number'])) {
-        $name = $_POST['name'];
-        $number = $_POST['number'];
-        $contact = ['name' => $name, 'number' => $number];
-        array_push($contacts, $contact);
-        saveContacts($contacts);
+        saveName($contacts);
+    }
+  
+
+    if (isset($_GET['name'])) {
+        deleteContact($contacts);
     }
 
-    // Delete:
-    if (isset($_GET['name'])) {
-        $name = $_GET['name'];
-        deleteContacts($contacts, $name);
-    }
+    return [
+        'contacts' => $contacts,
+    ];
 
 }
-extract($pagecontroller());
+
+extract(frontcontroller());
     
 ?>
 <!DOCTYPE html>
