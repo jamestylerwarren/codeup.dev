@@ -32,7 +32,7 @@ function isPost()
 
 function input($key, $default = '')
 {
-    return isset($_POST[$key]) ? $_POST[$key] : $default;
+    return isset($_REQUEST[$key]) ? $_REQUEST[$key] : $default;
 }
 
 function clearSession()
