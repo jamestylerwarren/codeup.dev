@@ -2,14 +2,12 @@
 require_once '../Input.php';
 
 function pageController() {
-	if (isset($_GET['score'])) {
-		$score = $_GET['score'];
-	} else {
-		$score = 0;
-	}
+	$score = Input::get('score', 0);
 	return ['score' => $score];
 }
+
 extract(pageController());
+
 ?>
 <!DOCTYPE html>
 <html>
