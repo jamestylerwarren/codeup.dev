@@ -1,4 +1,6 @@
 <?php
+require_once '../Input.php';
+
 function pageController() {
 	if (isset($_GET['score'])) {
 		$score = $_GET['score'];
