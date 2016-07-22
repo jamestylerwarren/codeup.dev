@@ -1,12 +1,11 @@
 <?php
 session_start();
+require_once '../Auth.php';
+require_once '../Input.php';
+
 function clearSession()
 {
-    // clear $_SESSION array
-    session_unset();
-
-    // delete session data on the server and send the client a new cookie
-    session_regenerate_id(true);
+    Auth::logout();
     header('Location: http://codeup.dev/login.php');
 	exit();
 }

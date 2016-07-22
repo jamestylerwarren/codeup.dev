@@ -1,24 +1,32 @@
 <?php
 
 require_once 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 
 function pagecontroller(){
 	session_start();
 	
-	$username = escape(keyCheck('username'));//calling function keyCHeck in functions.php
-	$password = escape(keyCheck('password'));
-	$welcome = escape(keyCheck('welcome'));
+	//calling function keyCHeck in functions.php
+	$username = Input::get('username');
+	$password = Input::get('password');
+	$welcome = Input::get('welcome');
 
-	if (isset($_SESSION['logged_in_user'])) {                       //if there is a session key, redirect to auth page
+	//if there is a session key, function returns true
+	if (Auth::check()) {   
 		header('Location: http://codeup.dev/authorized.php');
 		exit();
 	}
-	if (Auth::attempt($username, $password)) {
-		header('Location: http://codeup.dev/authorized.php'); //direct to auth page when guest and password are entered
+
+	//direct to auth page when guest and password are entered
+	if (Auth::attempt($username, $password)) { 
+		header('Location: http://codeup.dev/authorized.php'); 
 		exit();
-	} else {
-		$message = 'Invalid login. Please try again';
-	}
+	} 
+	
+	$message = "User {$username} failed to log in!";;
+	
+
 	return ['message' => $message];
 }
 extract(pagecontroller());

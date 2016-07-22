@@ -1,8 +1,8 @@
 <?php
-require_once '../exercises/Log.php';
+require_once 'Log.php';
 class Auth 
 {	
-	public $username = 'guest';
+	public static $username = 'guest';
 	public static $password = '$2y$10$SLjwBwdOVvnMgWxvTI4Gb.YVcmDlPTpQystHMO2Kfyi/DS8rgA0Fm';
 
 	public function attempt($username, $password) {
@@ -16,20 +16,30 @@ class Auth
 			$log->logInfo($message);
 			return true;	
 		}
-		
+
 		return false;
 	}
 
 	public function check() {
+		if (isset($_SESSION['logged_in_user'])) {
+			return true;
+		}
 
+		return false;
 	}
 
 	public function user() {
-
+		if (isset($_SESSION['logged_in_user'])) {
+			return ($_SESSION['logged_in_user']);
+		}
 	}
 
 	public function logout() {
-		
+		// clear $_SESSION array
+	    session_unset();
+
+	    // delete session data on the server and send the client a new cookie
+	    session_regenerate_id(true);
 	}
 
 }

@@ -2,6 +2,8 @@
 session_start();
 
 require_once 'functions.php';
+require_once '../Auth.php';
+require_once '../Input.php';
 
 function pagecontroller() {
 	if (!isset($_SESSION['logged_in_user'])) {
