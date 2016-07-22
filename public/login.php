@@ -6,11 +6,13 @@ require_once '../Input.php';
 
 function pagecontroller(){
 	session_start();
-	
+
+	$message = '';
+	$hidden = 'hidden';
+
 	//calling function keyCHeck in functions.php
 	$username = Input::get('username');
 	$password = Input::get('password');
-	$welcome = Input::get('welcome');
 
 	//if there is a session key, function returns true
 	if (Auth::check()) {   
@@ -19,15 +21,18 @@ function pagecontroller(){
 	}
 
 	//direct to auth page when guest and password are entered
-	if (Auth::attempt($username, $password)) { 
-		header('Location: http://codeup.dev/authorized.php'); 
-		exit();
-	} 
-	
-	$message = "User {$username} failed to log in!";;
-	
+	if (Input::has('username') || Input::has('password')) {
 
-	return ['message' => $message];
+		if (Auth::attempt($username, $password)) { 
+			header('Location: http://codeup.dev/authorized.php'); 
+			exit();
+		} else {
+			$message = "User {$username} failed to log in!";
+			$hidden = '';
+		}
+	}
+	
+	return ['message' => $message, 'hidden' => $hidden];
 }
 extract(pagecontroller());
 ?>	
@@ -140,6 +145,7 @@ extract(pagecontroller());
 				<input type="text" name="username" class="form-control" placeholder="Username" required="" autofocus="">
 				<input type="password" name="password" class="form-control" placeholder="Password" required="">				
 				<button class="btn btn-lg btn-primary btn-block" type="submit">Sign In</button>
+				<h3 class="form-signin-heading text-muted" <?= $hidden; ?> > <?= $message; ?></h3>
 			</form>
 		</div>
 	</div>

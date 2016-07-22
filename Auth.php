@@ -5,7 +5,7 @@ class Auth
 	public static $username = 'guest';
 	public static $password = '$2y$10$SLjwBwdOVvnMgWxvTI4Gb.YVcmDlPTpQystHMO2Kfyi/DS8rgA0Fm';
 
-	public function attempt($username, $password) {
+	public static function attempt($username, $password) {
 		$passwordVerify = password_verify($password, self::$password);
 
 		if ($username === self::$username && $passwordVerify) {
@@ -16,11 +16,11 @@ class Auth
 			$log->logInfo($message);
 			return true;	
 		}
-
+		
 		return false;
 	}
 
-	public function check() {
+	public static function check() {
 		if (isset($_SESSION['logged_in_user'])) {
 			return true;
 		}
@@ -28,13 +28,13 @@ class Auth
 		return false;
 	}
 
-	public function user() {
+	public static function user() {
 		if (isset($_SESSION['logged_in_user'])) {
 			return ($_SESSION['logged_in_user']);
 		}
 	}
 
-	public function logout() {
+	public static function logout() {
 		// clear $_SESSION array
 	    session_unset();
 
