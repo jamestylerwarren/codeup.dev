@@ -13,9 +13,7 @@ function pagecontroller(){
 		header('Location: http://codeup.dev/authorized.php');
 		exit();
 	}
-	if ($username === 'guest' && $password === 'password') {
-		$_SESSION['logged_in_user'] = $username;
-		$_SESSION['welcome'] = $welcome;
+	if (Auth::attempt($username, $password)) {
 		header('Location: http://codeup.dev/authorized.php'); //direct to auth page when guest and password are entered
 		exit();
 	} else {
