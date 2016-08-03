@@ -1,7 +1,7 @@
 <?php
 require __DIR__ . '/../Input.php';
 require __DIR__ . '/../db_connect.php'; //Typically, you don't want to commit username/pw info to github
-require __DIR__ . '/../public/format-size.php';
+
 
 
 function pageController($dbc) {
@@ -25,6 +25,7 @@ function pageController($dbc) {
 
 	return [
 	  'parks' => $parks,
+	  'page' => $page,
 	];
 
 
@@ -124,7 +125,7 @@ extract(pageController($dbc));
 							<td><?= $park['name'] ?></td>
 							<td><?= $park['location'] ?></td>
 							<td><?= $park['date_established'] ?></td>
-							<td><?= $park['area_in_acres'] ?></td>
+							<td><?= number_format($park['area_in_acres'], 2) ?></td>
 				  		</tr>
 				  		<?php }; ?>
 				  	</tbody>
@@ -133,8 +134,8 @@ extract(pageController($dbc));
 						  	<td colspan="4">
 						  	<!-- The values in this pagination control indicate you're currently viewing page 2 -->
 							  	<nav aria-label="Page navigation" class="text-center">
-								  	<ul class="pagination">
-									  	<li>
+								  	<ul class="pagination pagination-lg">
+									  	<li class="">
 										  	<a href="?page=1" aria-label="Previous">
 											  	<span aria-hidden="true">&laquo;</span>
 									  		</a>
@@ -142,7 +143,7 @@ extract(pageController($dbc));
 									  	<li><a href="?page=1">1</a></li>
 									  	<li><a href="?page=2">2</a></li>
 									  	<li><a href="?page=3">3</a></li>
-									  	<li>
+									  	<li class="">
 											<a href="?page=3" aria-label="Next">
 												<span aria-hidden="true">&raquo;</span>
 											</a>
