@@ -14,6 +14,7 @@ function pageController($dbc) {
 	$offset =  $page * 4 - 4;
 	$sql .= " LIMIT 4 OFFSET $offset";
 
+	// var_dump($page);
 	// var_dump($sql);
 
 	$parks = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
@@ -135,18 +136,24 @@ extract(pageController($dbc));
 						  	<!-- The values in this pagination control indicate you're currently viewing page 2 -->
 							  	<nav aria-label="Page navigation" class="text-center">
 								  	<ul class="pagination pagination-lg">
-									  	<li class="">
-										  	<a href="?page=1" aria-label="Previous">
+									  	<li class=<?php if ($page==1) { ?>"disabled"
+									  		<?php } else { ?>""<?php }; ?>>
+										  	<a href=<?php if ($page==1) { ?>
+										  		""
+										  	<?php } else { ?>"?page=1"<?php }; ?> aria-label="Previous">
 											  	<span aria-hidden="true">&laquo;</span>
 									  		</a>
 									  	</li>
 									  	<li><a href="?page=1">1</a></li>
 									  	<li><a href="?page=2">2</a></li>
 									  	<li><a href="?page=3">3</a></li>
-									  	<li class="">
-											<a href="?page=3" aria-label="Next">
-												<span aria-hidden="true">&raquo;</span>
-											</a>
+									  	<li class=<?php if ($page==3) { ?>"disabled"
+									  		<?php } else { ?>""<?php }; ?>>
+										  	<a href=<?php if ($page==3) { ?>
+										  		""
+										  	<?php } else { ?>"?page=3"<?php }; ?> aria-label="Previous">
+											  	<span aria-hidden="true">&raquo;</span>
+									  		</a>
 									  	</li>
 								  	</ul>
 							  	</nav>
