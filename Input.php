@@ -11,7 +11,7 @@ class Input
 
     public static function isPost() 
     {
-        return isset($_POST) ? true : false;
+        return !empty($_POST) ? true : false;
 
     }
 

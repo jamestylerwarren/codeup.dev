@@ -18,27 +18,21 @@ function pageController($dbc) {
         $date_established = Input::get('date_established');
         $area_in_acres = Input::get('area_in_acres');
         $description = Input::get('description');
-        // var_dump("Name: {$name}");
-        // var_dump("Location: {$location}");
-        // var_dump("Date: {$date_established}");
-        // var_dump("Area: {$area_in_acres}");
-        // var_dump("Description: {$description}");
-        $details = [
-
-        ]
-
+        var_dump("Name: {$name}");
+        var_dump("Location: {$location}");
+        var_dump("Date: {$date_established}");
+        var_dump("Area: {$area_in_acres}");
+        var_dump("Description: {$description}");
+        
         $stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
         
-        foreach ($details as $detail) {
-		    $stmt->bindValue(':name', $user['name'], PDO::PARAM_STR);
-		    $stmt->bindValue(':location',  $user['location'],  PDO::PARAM_STR);
-		    $stmt->bindValue(':date_established',  $user['date_established'],  PDO::PARAM_STR);
-		    $stmt->bindValue(':area_in_acres',  $user['area_in_acres'],  PDO::PARAM_STR);
-		    $stmt->bindValue(':description',  $user['description'],  PDO::PARAM_STR);
+	    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
+	    $stmt->bindValue(':location',  $location,  PDO::PARAM_STR);
+	    $stmt->bindValue(':date_established',  $date_established,  PDO::PARAM_STR);
+	    $stmt->bindValue(':area_in_acres',  $area_in_acres,  PDO::PARAM_STR);
+	    $stmt->bindValue(':description',  $description,  PDO::PARAM_STR);
 
-		    $stmt->execute();
-		}
-
+	    $stmt->execute();
     }
 
     $sql = "SELECT * FROM national_parks";
@@ -51,7 +45,7 @@ function pageController($dbc) {
 	// var_dump($sql);
 
 	$parks = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
-	// $parks = $db(database connection)->query($sql)(querying sql database)->fetchAll(fetching all columns) (PDO object::FETCH_ASSOC = fetch associative array, meaning columns are named, not just numeric keys)
+	// $parks = $dbc(database connection)->query($sql)(querying sql database)->fetchAll(fetching all columns) (PDO object::FETCH_ASSOC = fetch associative array, meaning columns are named, not just numeric keys)
 	
 	// var_dump($parks);
 
@@ -203,7 +197,7 @@ extract(pageController($dbc));
 					
 				</table>
 			</div>
-			<form>
+			<form method="post">
 			<h1>Submit New National Park</h1>
 			Name:<br>
 			<input type="text" name="name" required value=""><br><br>
