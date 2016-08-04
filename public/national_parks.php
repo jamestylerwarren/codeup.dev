@@ -5,10 +5,28 @@ require __DIR__ . '/../db_connect.php'; //Typically, you don't want to commit us
 
 
 function pageController($dbc) {
-	$sql = "SELECT * FROM national_parks";
 
+	$name = '';
+	$location = '';
+    $date_established = '';
+    $area_in_acres = '';
+    $description = '';
 
+    if (Input::isPost()) {
+        $name = Input::get('name');
+        $location = Input::get('location');
+        $date_established = Input::get('date_established');
+        $area_in_acres = Input::get('area_in_acres');
+        $description = Input::get('description');
+        var_dump("Name: {$name}");
+        var_dump("Location: {$location}");
+        var_dump("Date: {$date_established}");
+        var_dump("Area: {$area_in_acres}");
+        var_dump("Description: {$description}");
+        $sql = "INSERT INTO nationa_parks (name, location, date_established, area_in_acres, description) VALUES ('$name', '$location', '$date_established', '$area_in_acres', '$description')";
+    }
 
+    $sql = "SELECT * FROM national_parks";
 	// Copy the query and test it in SQL Pro
 	$page = Input::get('page', 1) < 0 ? 1 : Input::get('page', 1);
 	$offset =  $page * 4 - 4;
@@ -19,14 +37,17 @@ function pageController($dbc) {
 
 	$parks = $dbc->query($sql)->fetchAll(PDO::FETCH_ASSOC);
 	// $parks = $db(database connection)->query($sql)(querying sql database)->fetchAll(fetching all columns) (PDO object::FETCH_ASSOC = fetch associative array, meaning columns are named, not just numeric keys)
-
-
+	
 	// var_dump($parks);
-
 
 	return [
 	  'parks' => $parks,
 	  'page' => $page,
+	  'name' => $name,
+	  'location' => $location,
+	  'date_established' => $date_established,
+	  'area_in_acres' => $area_in_acres,
+	  'description' => $description
 	];
 
 
@@ -100,14 +121,14 @@ extract(pageController($dbc));
 	</style>
 </head>
 <body>
-	<h1>National Parks Database</h1>
 		<div class="container" style="margin-top:40px">
+		<h1>National Parks Database</h1>
 			<div class="row">
 				<table class="table table-striped table-hover table-bordered">
 				  	<thead>
 					  	<tr>
 						  	<th>
-							  	<a href="?sort_by=team">Name</a>
+							  	<a href="?sort_by=name">Name</a>
 						  	</th>
 						  	<th>
 							  	<a href="?sort_by=stadium">Location</a>
@@ -118,6 +139,9 @@ extract(pageController($dbc));
 						   	<th>
 							  	<a href="?sort_by=league">Size in Acres</a>
 						  	</th>
+						  	<th>
+							  	<a href="?sort_by=league">Description</a>
+						  	</th>
 					  	</tr>
 				  	</thead>
 				  	<tbody>
@@ -127,12 +151,13 @@ extract(pageController($dbc));
 							<td><?= $park['location'] ?></td>
 							<td><?= $park['date_established'] ?></td>
 							<td><?= number_format($park['area_in_acres'], 2) ?></td>
+							<td><?= $park['description'] ?></td>
 				  		</tr>
 				  		<?php }; ?>
 				  	</tbody>
 				  	<tfoot>
 				  		<tr>
-						  	<td colspan="4">
+						  	<td colspan="5">
 						  	<!-- The values in this pagination control indicate you're currently viewing page 2 -->
 							  	<nav aria-label="Page navigation" class="text-center">
 								  	<ul class="pagination pagination-lg">
@@ -160,8 +185,82 @@ extract(pageController($dbc));
 					  		</td>
 				 		</tr>
 					</tfoot>
+					
 				</table>
 			</div>
+			<form>
+			<h1>Submit New National Park</h1>
+			Name:<br>
+			<input type="text" name="name" value=""><br><br>
+			Location:<br>
+				<select>
+					<option value="<?php AL ?>">AL</option>
+					<option value="AK">AK</option>
+					<option value="AZ">AZ</option>
+					<option value="AR">AR</option>
+					<option value="CA">CA</option>
+					<option value="CO">CO</option>
+					<option value="CT">CT</option>
+					<option value="DE">DE</option>
+					<option value="DC">DC</option>
+					<option value="FL">FL</option>
+					<option value="GA">GA</option>
+					<option value="HI">HI</option>
+					<option value="ID">ID</option>
+					<option value="IL">IL</option>
+					<option value="IN">IN</option>
+					<option value="IA">IA</option>
+					<option value="KS">KS</option>
+					<option value="KY">KY</option>
+					<option value="LA">LA</option>
+					<option value="ME">ME</option>
+					<option value="MD">MD</option>
+					<option value="MA">MA</option>
+					<option value="MI">MI</option>
+					<option value="MN">MN</option>
+					<option value="MS">MS</option>
+					<option value="MO">MO</option>
+					<option value="MT">MT</option>
+					<option value="NE">NE</option>
+					<option value="NV">NV</option>
+					<option value="NH">NH</option>
+					<option value="NJ">NJ</option>
+					<option value="NM">NM</option>
+					<option value="NY">NY</option>
+					<option value="NC">NC</option>
+					<option value="ND">ND</option>
+					<option value="OH">OH</option>
+					<option value="OK">OK</option>
+					<option value="OR">OR</option>
+					<option value="PA">PA</option>
+					<option value="RI">RI</option>
+					<option value="SC">SC</option>
+					<option value="SD">SD</option>
+					<option value="TN">TN</option>
+					<option value="TX">TX</option>
+					<option value="UT">UT</option>
+					<option value="VT">VT</option>
+					<option value="VA">VA</option>
+					<option value="WA">WA</option>
+					<option value="WV">WV</option>
+					<option value="WI">WI</option>
+					<option value="WY">WY</option>
+				</select><br><br>
+				Date Established:<br>
+				<input type="text" name="date_established" placeholder="YYYY-MM-DD" value="<?php $date_established?>"><br><br>
+
+				Size:<br>
+				<input type="text" name="size_in_acres" placeholder="Size in Acres" value="<?php $size_in_acres ?>"><br><br>
+
+				Description:<br>
+				<textarea id="description" name="description" value="<?php $description ?>" placeholder="Max 2000 characters"></textarea><br><br>
+
+				<button type="submit" class="btn btn-primary">
+                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+                    </span>
+                    Submit
+                </button><br>
+			</form>
 		</div>
 
 

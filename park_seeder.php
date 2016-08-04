@@ -20,7 +20,7 @@ $details = [
     ['name' => 'Mammoth Cave', 'location' => 'KY', 'date_established' => '1941-07-01', 'area_in_acres' => '52830.19', 'description' => 'With more than 400 miles (640 km) of passageways explored, Mammoth Cave is by far the world\'s longest cave system. Subterranean wildlife includes eight bat species, Kentucky cave shrimp, Northern cavefish, and cave salamanders. Above ground, the park provides recreation on the Green River, 70 miles of hiking trails, and plenty of sinkholes and springs.']
 ];
 
-$stmt = $dbc->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres) VALUES (:name, :location, :date_established, :area_in_acres, :description)");
+$stmt = $dbc->prepare("INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)");
 
 foreach ($details as $detail) {
     $stmt->bindvalue(':name', $detail['name'], PDO::PARAM_STR);
@@ -29,7 +29,7 @@ foreach ($details as $detail) {
     $stmt->bindvalue(':area_in_acres', $detail['area_in_acres'], PDO::PARAM_INT);
     $stmt->bindvalue(':description', $detail['description'], PDO::PARAM_STR);
 
-    $stmt->exec;
+    $stmt->execute();
 
     echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
 }
