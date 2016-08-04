@@ -18,11 +18,11 @@ function pageController($dbc) {
         $date_established = Input::get('date_established');
         $area_in_acres = Input::get('area_in_acres');
         $description = Input::get('description');
-        var_dump("Name: {$name}");
-        var_dump("Location: {$location}");
-        var_dump("Date: {$date_established}");
-        var_dump("Area: {$area_in_acres}");
-        var_dump("Description: {$description}");
+        // var_dump("Name: {$name}");
+        // var_dump("Location: {$location}");
+        // var_dump("Date: {$date_established}");
+        // var_dump("Area: {$area_in_acres}");
+        // var_dump("Description: {$description}");
         
         $stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
         
