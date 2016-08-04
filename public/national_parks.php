@@ -18,12 +18,27 @@ function pageController($dbc) {
         $date_established = Input::get('date_established');
         $area_in_acres = Input::get('area_in_acres');
         $description = Input::get('description');
-        var_dump("Name: {$name}");
-        var_dump("Location: {$location}");
-        var_dump("Date: {$date_established}");
-        var_dump("Area: {$area_in_acres}");
-        var_dump("Description: {$description}");
-        $sql = "INSERT INTO nationa_parks (name, location, date_established, area_in_acres, description) VALUES ('$name', '$location', '$date_established', '$area_in_acres', '$description')";
+        // var_dump("Name: {$name}");
+        // var_dump("Location: {$location}");
+        // var_dump("Date: {$date_established}");
+        // var_dump("Area: {$area_in_acres}");
+        // var_dump("Description: {$description}");
+        $details = [
+
+        ]
+
+        $stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
+        
+        foreach ($details as $detail) {
+		    $stmt->bindValue(':name', $user['name'], PDO::PARAM_STR);
+		    $stmt->bindValue(':location',  $user['location'],  PDO::PARAM_STR);
+		    $stmt->bindValue(':date_established',  $user['date_established'],  PDO::PARAM_STR);
+		    $stmt->bindValue(':area_in_acres',  $user['area_in_acres'],  PDO::PARAM_STR);
+		    $stmt->bindValue(':description',  $user['description'],  PDO::PARAM_STR);
+
+		    $stmt->execute();
+		}
+
     }
 
     $sql = "SELECT * FROM national_parks";
@@ -137,7 +152,7 @@ extract(pageController($dbc));
 							  	<a href="?sort_by=league">Date Established</a>
 						  	</th>
 						   	<th>
-							  	<a href="?sort_by=league">Size in Acres</a>
+							  	<a href="?sort_by=league">Area in Acres</a>
 						  	</th>
 						  	<th>
 							  	<a href="?sort_by=league">Description</a>
@@ -191,10 +206,10 @@ extract(pageController($dbc));
 			<form>
 			<h1>Submit New National Park</h1>
 			Name:<br>
-			<input type="text" name="name" value=""><br><br>
+			<input type="text" name="name" required value=""><br><br>
 			Location:<br>
-				<select>
-					<option value="<?php AL ?>">AL</option>
+				<select name="location">
+					<option value="AL">AL</option>
 					<option value="AK">AK</option>
 					<option value="AZ">AZ</option>
 					<option value="AR">AR</option>
@@ -247,13 +262,13 @@ extract(pageController($dbc));
 					<option value="WY">WY</option>
 				</select><br><br>
 				Date Established:<br>
-				<input type="text" name="date_established" placeholder="YYYY-MM-DD" value="<?php $date_established?>"><br><br>
+				<input type="text" required name="date_established" placeholder="YYYY-MM-DD" value=""><br><br>
 
 				Size:<br>
-				<input type="text" name="size_in_acres" placeholder="Size in Acres" value="<?php $size_in_acres ?>"><br><br>
+				<input type="text" required placeholder="Area in Acres" value="" name="area_in_acres"><br><br>
 
 				Description:<br>
-				<textarea id="description" name="description" value="<?php $description ?>" placeholder="Max 2000 characters"></textarea><br><br>
+				<textarea id="description" name="description" value="" placeholder="Max 2000 characters" required></textarea><br><br>
 
 				<button type="submit" class="btn btn-primary">
                     <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
