@@ -35,6 +35,20 @@ class Input
         return self::has($key) ? $_REQUEST[$key] : $default;
     }
 
+    public static function getString($key){
+        $validKey = self::get($key);
+        if (!$validKey || !is_string($validKey)) {
+            throw new Exception("{$validKey} must be a string"); 
+        }
+    }
+
+    public static function getNumber($key){
+        $validNum = self::get($key);
+        if (!$validNum || !is_numeric($validNum)) {
+            throw new Exception("{validNum must be a number");
+        }
+    }
+
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //
     // The Input class should not ever be instantiated, so we prevent the    //
