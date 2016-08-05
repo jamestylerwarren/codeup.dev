@@ -9,15 +9,13 @@ class Input
      * @return boolean whether value exists in $_POST or $_GET
      */
 
-    public static function isPost() 
-    {
+    public static function isPost() {
         return !empty($_POST) ? true : false;
 
     }
 
 
-    public static function has($key)
-    {
+    public static function has($key) {
         // TODO: Fill in this function
         return isset($_REQUEST[$key]) ? true : false;
     }
@@ -29,15 +27,14 @@ class Input
      * @param mixed $default default value to return if key not found
      * @return mixed value passed in request
      */
-    public static function get($key, $default = null)
-    {
+    public static function get($key, $default = null) {
         // TODO: Fill in this function
         return self::has($key) ? $_REQUEST[$key] : $default;
     }
 
     public static function getString($key){
         $validKey = self::get($key);
-        if (!$validKey || !is_string($validKey)) {
+        if (!$validKey || is_numeric($validKey)) {
             throw new Exception("{$validKey} must be a string"); 
         }
     }
@@ -45,9 +42,16 @@ class Input
     public static function getNumber($key){
         $validNum = self::get($key);
         if (!$validNum || !is_numeric($validNum)) {
-            throw new Exception("{validNum must be a number");
+            throw new Exception("{$validNum} must be a number");
         }
     }
+    public static function getDate($key) {
+        $validDate = self::get($key);
+        if (!$validDate) {
+            throw new Exception("{$validDate} is not a valid date");
+        }
+    }
+
 
     ///////////////////////////////////////////////////////////////////////////
     //                      DO NOT EDIT ANYTHING BELOW!!                     //

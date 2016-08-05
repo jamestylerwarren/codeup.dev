@@ -13,11 +13,11 @@ function pageController($dbc) {
     $description = '';
 
     if (Input::isPost()) {
-        $name = Input::get('name');
-        $location = Input::get('location');
+        $name = Input::getString('name');
+        $location = Input::getString('location');
         $date_established = Input::get('date_established');
-        $area_in_acres = Input::get('area_in_acres');
-        $description = Input::get('description');
+        $area_in_acres = Input::getNumber('area_in_acres');
+        $description = Input::getString('description');
         // var_dump("Name: {$name}");
         // var_dump("Location: {$location}");
         // var_dump("Date: {$date_established}");
