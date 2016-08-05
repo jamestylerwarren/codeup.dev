@@ -17,11 +17,11 @@ class Log
 		$this->handle = fopen($this->filename, 'a');
 	}
 
-	public function setFilename($filename){
+	private function setFilename($filename){
 		$this->filename = (string)$filename;
 	}
 
-	public function setHandle($handle){
+	private function setHandle($handle){
 		$this->handle = (string)$handle;
 	}
 
