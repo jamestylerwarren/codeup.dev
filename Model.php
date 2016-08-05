@@ -3,6 +3,7 @@ require 'Input.php';
 
 class Model {
 	private $attributes = [];
+	protected static $table;
 
 	public function __set($key, $value)
     {
@@ -16,9 +17,11 @@ class Model {
     		echo "{$name} key does not exist";
     	}
     }
+    public static function getTableName()
+    {
+    	return static::$table;
+    }
 }
 
-$model = new Model();
-$model->name = 'tyler';
-print_r($model);
+var_dump(Model::getTableName());
 
