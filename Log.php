@@ -2,10 +2,10 @@
 
 class Log
 {	//defining variables
-	public $filename;
-	public $handle;
-	public $date; 
-	public $time; 
+	private $filename;
+	private $handle;
+	private $date; 
+	private $time; 
 
 
 	//constructor function performs from the start
@@ -17,9 +17,21 @@ class Log
 		$this->handle = fopen($this->filename, 'a');
 	}
 
+	public function setFilename($filename){
+		$this->filename = (string)$filename;
+	}
+
+	public function setHandle($handle){
+		$this->handle = (string)$handle;
+	}
+
 	//logMessage writes in the file
 	function logMessage($logLevel, $message) {
-		fwrite($this->handle, $this->date . ' ' . $this->time . ' ' . $logLevel . ' ' . $message . PHP_EOL);
+		if (touch($this->filename) && is_writable($this->filename)) {
+			fwrite($this->handle, $this->date . ' ' . $this->time . ' ' . $logLevel . ' ' . $message . PHP_EOL);
+		} else {
+			echo "Not readable or writeable";
+		}
 	} 
 
 	function logInfo($message) {	
