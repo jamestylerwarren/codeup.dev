@@ -50,6 +50,7 @@ class Input
         if (!$validDate) {
             throw new Exception("{$validDate} is not a valid date");
         }
+        return 
     }
 
 
