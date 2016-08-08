@@ -34,29 +34,37 @@ class Input
 
     public static function getString($key, $min = 0, $max = 1000){
         $validKey = self::get($key);
-        if (!is_string($validKey) || !is_numeric($min) || !is_numeric($max) {
+        if (!is_string($key) || !is_numeric($min) || !is_numeric($max)) {
             throw new InvalidArgumentException("Invalid argument");
         }
+        if (!self::has($key)) {
+            throw new OutOfRangeException("Out of range exception");
+        }
+        if (is_numeric($validKey)) {
+            throw new DomainException("Domain exception - not the correct type");
+        }
+        if ($min > strlen($validKey) || $max < strlen($validKey)) {
+            throw new RangeException("String length is less than {$max} or greater than {max}");
+        }
         
-
-
-        // if (!$validKey || is_numeric($validKey) || $validKey == "") {
-        //     throw new Exception("{$validKey} must be a string"); 
-        // }
         return trim($validKey);
     }
 
     public static function getNumber($key, $min = 0, $max = 40, $default = 0){
         $validNum = self::get($key, $default = 0);
-        if (!is_string($validNum) || !is_numeric($min) || !is_numeric($max) {
+        if (!is_numeric($key) || !is_numeric($min) || !is_numeric($max)) {
             throw new InvalidArgumentException("Invalid argument");
         }
-        
+        if (!self::has($key)) {
+            throw new OutOfRangeException("Out of range exception");
+        }
+        if (!is_numeric($validNum)) {
+            throw new DomainException("Domain exception - not the correct type");
+        }
+        if ($min > $validNum || $max < $validNum) {
+            throw new RangeException("Number is less than {$min} or greater than {max}");
+        }
 
-
-        // if (!$validNum || !is_numeric($validNum)) {
-        //     throw new Exception("{$validNum} must be a number");
-        // }
         return floatval($validNum);
     }
     public static function getDate($key) {
