@@ -49,8 +49,7 @@ class Input
         $validDate = self::get($key);
         if (!$validDate) {
             throw new Exception("{$validDate} is not a valid date");
-        }
-        return 
+        } 
     }
 
 
