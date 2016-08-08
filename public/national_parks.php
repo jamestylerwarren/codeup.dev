@@ -16,52 +16,53 @@ function pageController($dbc) {
 		try {
 			$name = Input::getString('name');
 		} catch (Exception $e) {
-			var_dump($e);
-			array_push($errors, $e->getMessage());
+			$errors['name'] = 'Not a valid input';
 		}
 
 		try {
 			$location = Input::getString('location');
 		} catch (Exception $e){
-			var_dump($e);
-			array_push($errors, $e->getMessage());
+			$errors['location'] = 'Not a valid input';
 		}
 
 		try {
 			$date_established = Input::getDate('date_established');
 		} catch (Exception $e) {
-			var_dump($e);
-			array_push($errors, $e->getMessage());
+			$errors['date_established'] = 'Not a valid input';
 		}
 
 		try {
 			$area_in_acres = Input::getNumber('area_in_acres');
 		} catch (Exception $e) {
-			var_dump($e);
-			array_push($errors, $e->getMessage());
+			$errors['area_in_acres'] = 'Not a valid input';
 		}
 
 		try {
 			$description = Input::getString('description');
 		} catch (Exception $e) {
-			var_dump($e);
-			array_push($errors, $e->getMessage());
+			$errors['description'] = 'Not a valid input';
 		}
+
+		var_dump($errors);
 		// var_dump("Name: {$name}");
 		// var_dump("Location: {$location}");
-		// var_dump("Date: {$date_established}");
+		var_dump($date_established);
 		// var_dump("Area: {$area_in_acres}");
 		// var_dump("Description: {$description}");
+		if (!$errors) {
+			$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
 		
-		$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
-		
-		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
-		$stmt->bindValue(':location', $location,  PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $date_established->format('Y-m-d'), PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $area_in_acres,  PDO::PARAM_STR);
-		$stmt->bindValue(':description', $description,  PDO::PARAM_STR);
+			$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+			$stmt->bindValue(':location', $location,  PDO::PARAM_STR);
+			$stmt->bindValue(':date_established', $date_established->format('Y-m-d'), PDO::PARAM_STR);
+			$stmt->bindValue(':area_in_acres', $area_in_acres,  PDO::PARAM_STR);
+			$stmt->bindValue(':description', $description,  PDO::PARAM_STR);
+			$stmt->execute();
+		}
+	}
 
-		$stmt->execute();
+	if ($date_established !== "") {
+		$date_established = $date_established->date;
 	}
 
 	$sql = "SELECT * FROM national_parks";
@@ -77,6 +78,8 @@ function pageController($dbc) {
 	// $parks = $dbc(database connection)->query($sql)(querying sql database)->fetchAll(fetching all columns) (PDO object::FETCH_ASSOC = fetch associative array, meaning columns are named, not just numeric keys)
 	
 	// var_dump($parks);
+		# code...
+	
 
 	return [
 	  'parks' => $parks,
@@ -86,6 +89,7 @@ function pageController($dbc) {
 	  'date_established' => $date_established,
 	  'area_in_acres' => $area_in_acres,
 	  'description' => $description,
+	  'errors' => $errors
 	];
 
 
@@ -229,7 +233,8 @@ extract(pageController($dbc));
 			<form method="post">
 				<h1>Submit New National Park</h1>
 				Name:<br>
-				<input type="text" name="name" required value=""><br><br>
+				<?= (!empty($errors['name'])) ? $errors['name'] : ""; ?>
+				<input type="text" name="name" required value="<?php $name ?>"><br><br>
 				Location:<br>
 				<select name="location">
 					<option value="AL">AL</option>
@@ -285,13 +290,15 @@ extract(pageController($dbc));
 					<option value="WY">WY</option>
 				</select><br><br>
 				Date Established:<br>
-				<input type="text" required name="date_established" placeholder="YYYY-MM-DD" value=""><br><br>
-
+				<?= (!empty($errors['date_established'])) ? $errors['date_established'] : ""; ?>
+				<input type="text" required name="date_established" placeholder="YYYY-MM-DD" value="<?= $date_established ?>"><br><br>
 				Size:<br>
-				<input type="text" required placeholder="Area in Acres" value="" name="area_in_acres"><br><br>
+				<?= (!empty($errors['area_in_acres'])) ? $errors['area_in_acres'] : ""; ?>
+				<input type="text" required placeholder="Area in Acres" name="area_in_acres" value="<?= $area_in_acres ?>"><br><br>
 
 				Description:<br>
-				<textarea id="description" name="description" value="" placeholder="Max 2000 characters" required></textarea><br><br>
+				<?= (!empty($errors['description'])) ? $errors['description'] : ""; ?>
+				<textarea id="description" name="description" placeholder="Max 2000 characters" required value="<?= $description ?>"></textarea><br><br>
 
 				<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
