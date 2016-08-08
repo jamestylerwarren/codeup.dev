@@ -8,34 +8,63 @@ function pageController($dbc) {
 
 	$name = '';
 	$location = '';
-    $date_established = '';
-    $area_in_acres = '';
-    $description = '';
+	$date_established = '';
+	$area_in_acres = '';
+	$description = '';
+	$errors = [];
+	if (Input::isPost()) {
+		try {
+			$name = Input::getString('name');
+		} catch (Exception $e) {
+			var_dump($e);
+			array_push($errors, $e->getMessage());
+		}
 
-    if (Input::isPost()) {
-        $name = Input::getString('name');
-        $location = Input::getString('location');
-        $date_established = Input::getDate('date_established');
-        $area_in_acres = Input::getNumber('area_in_acres');
-        $description = Input::getString('description');
-        // var_dump("Name: {$name}");
-        // var_dump("Location: {$location}");
-        // var_dump("Date: {$date_established}");
-        // var_dump("Area: {$area_in_acres}");
-        // var_dump("Description: {$description}");
-        
-        $stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
-        
-	    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-	    $stmt->bindValue(':location', $location,  PDO::PARAM_STR);
-	    $stmt->bindValue(':date_established', $date_established->format('Y-m-d'), PDO::PARAM_STR);
-	    $stmt->bindValue(':area_in_acres', $area_in_acres,  PDO::PARAM_STR);
-	    $stmt->bindValue(':description', $description,  PDO::PARAM_STR);
+		try {
+			$location = Input::getString('location');
+		} catch (Exception $e){
+			var_dump($e);
+			array_push($errors, $e->getMessage());
+		}
 
-	    $stmt->execute();
-    }
+		try {
+			$date_established = Input::getDate('date_established');
+		} catch (Exception $e) {
+			var_dump($e);
+			array_push($errors, $e->getMessage());
+		}
 
-    $sql = "SELECT * FROM national_parks";
+		try {
+			$area_in_acres = Input::getNumber('area_in_acres');
+		} catch (Exception $e) {
+			var_dump($e);
+			array_push($errors, $e->getMessage());
+		}
+
+		try {
+			$description = Input::getString('description');
+		} catch (Exception $e) {
+			var_dump($e);
+			array_push($errors, $e->getMessage());
+		}
+		// var_dump("Name: {$name}");
+		// var_dump("Location: {$location}");
+		// var_dump("Date: {$date_established}");
+		// var_dump("Area: {$area_in_acres}");
+		// var_dump("Description: {$description}");
+		
+		$stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
+		
+		$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+		$stmt->bindValue(':location', $location,  PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $date_established->format('Y-m-d'), PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', $area_in_acres,  PDO::PARAM_STR);
+		$stmt->bindValue(':description', $description,  PDO::PARAM_STR);
+
+		$stmt->execute();
+	}
+
+	$sql = "SELECT * FROM national_parks";
 	// Copy the query and test it in SQL Pro
 	$page = Input::get('page', 1) < 0 ? 1 : Input::get('page', 1);
 	$offset =  $page * 4 - 4;
@@ -56,7 +85,7 @@ function pageController($dbc) {
 	  'location' => $location,
 	  'date_established' => $date_established,
 	  'area_in_acres' => $area_in_acres,
-	  'description' => $description
+	  'description' => $description,
 	];
 
 
@@ -134,74 +163,74 @@ extract(pageController($dbc));
 		<h1>National Parks Database</h1>
 			<div class="row">
 				<table class="table table-striped table-hover table-bordered">
-				  	<thead>
-					  	<tr>
-						  	<th>
-							  	<a href="?sort_by=name">Name</a>
-						  	</th>
-						  	<th>
-							  	<a href="?sort_by=stadium">Location</a>
-						  	</th>
-						  	<th>
-							  	<a href="?sort_by=league">Date Established</a>
-						  	</th>
-						   	<th>
-							  	<a href="?sort_by=league">Area in Acres</a>
-						  	</th>
-						  	<th>
-							  	<a href="?sort_by=league">Description</a>
-						  	</th>
-					  	</tr>
-				  	</thead>
-				  	<tbody>
-				  		<?php foreach ($parks as $park) { ?>
-				  		<tr>
+					<thead>
+						<tr>
+							<th>
+								<a href="?sort_by=name">Name</a>
+							</th>
+							<th>
+								<a href="?sort_by=stadium">Location</a>
+							</th>
+							<th>
+								<a href="?sort_by=league">Date Established</a>
+							</th>
+							<th>
+								<a href="?sort_by=league">Area in Acres</a>
+							</th>
+							<th>
+								<a href="?sort_by=league">Description</a>
+							</th>
+						</tr>
+					</thead>
+					<tbody>
+						<?php foreach ($parks as $park) { ?>
+						<tr>
 							<td><?= $park['name'] ?></td>
 							<td><?= $park['location'] ?></td>
 							<td><?= $park['date_established'] ?></td>
 							<td><?= number_format($park['area_in_acres'], 2) ?></td>
 							<td><?= $park['description'] ?></td>
-				  		</tr>
-				  		<?php }; ?>
-				  	</tbody>
-				  	<tfoot>
-				  		<tr>
-						  	<td colspan="5">
-						  	<!-- The values in this pagination control indicate you're currently viewing page 2 -->
-							  	<nav aria-label="Page navigation" class="text-center">
-								  	<ul class="pagination pagination-lg">
-									  	<li class=<?php if ($page==1) { ?>"disabled"
-									  		<?php } else { ?>""<?php }; ?>>
-										  	<a href=<?php if ($page==1) { ?>
-										  		""
-										  	<?php } else { ?>"?page=1"<?php }; ?> aria-label="Previous">
-											  	<span aria-hidden="true">&laquo;</span>
-									  		</a>
-									  	</li>
-									  	<li><a href="?page=1">1</a></li>
-									  	<li><a href="?page=2">2</a></li>
-									  	<li><a href="?page=3">3</a></li>
-									  	<li class=<?php if ($page==3) { ?>"disabled"
-									  		<?php } else { ?>""<?php }; ?>>
-										  	<a href=<?php if ($page==3) { ?>
-										  		""
-										  	<?php } else { ?>"?page=3"<?php }; ?> aria-label="Previous">
-											  	<span aria-hidden="true">&raquo;</span>
-									  		</a>
-									  	</li>
-								  	</ul>
-							  	</nav>
-					  		</td>
-				 		</tr>
+						</tr>
+						<?php }; ?>
+					</tbody>
+					<tfoot>
+						<tr>
+							<td colspan="5">
+							<!-- The values in this pagination control indicate you're currently viewing page 2 -->
+								<nav aria-label="Page navigation" class="text-center">
+									<ul class="pagination pagination-lg">
+										<li class=<?php if ($page==1) { ?>"disabled"
+											<?php } else { ?>""<?php }; ?>>
+											<a href=<?php if ($page==1) { ?>
+												""
+											<?php } else { ?>"?page=1"<?php }; ?> aria-label="Previous">
+												<span aria-hidden="true">&laquo;</span>
+											</a>
+										</li>
+										<li><a href="?page=1">1</a></li>
+										<li><a href="?page=2">2</a></li>
+										<li><a href="?page=3">3</a></li>
+										<li class=<?php if ($page==3) { ?>"disabled"
+											<?php } else { ?>""<?php }; ?>>
+											<a href=<?php if ($page==3) { ?>
+												""
+											<?php } else { ?>"?page=3"<?php }; ?> aria-label="Previous">
+												<span aria-hidden="true">&raquo;</span>
+											</a>
+										</li>
+									</ul>
+								</nav>
+							</td>
+						</tr>
 					</tfoot>
 					
 				</table>
 			</div>
 			<form method="post">
-			<h1>Submit New National Park</h1>
-			Name:<br>
-			<input type="text" name="name" required value=""><br><br>
-			Location:<br>
+				<h1>Submit New National Park</h1>
+				Name:<br>
+				<input type="text" name="name" required value=""><br><br>
+				Location:<br>
 				<select name="location">
 					<option value="AL">AL</option>
 					<option value="AK">AK</option>
@@ -265,10 +294,10 @@ extract(pageController($dbc));
 				<textarea id="description" name="description" value="" placeholder="Max 2000 characters" required></textarea><br><br>
 
 				<button type="submit" class="btn btn-primary">
-                    <span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
-                    </span>
-                    Submit
-                </button><br>
+					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
+					</span>
+					Submit
+				</button><br>
 			</form>
 		</div>
 
