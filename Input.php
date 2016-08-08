@@ -32,19 +32,31 @@ class Input
         return self::has($key) ? $_REQUEST[$key] : $default;
     }
 
-    public static function getString($key){
+    public static function getString($key, $min = 0, $max = 1000){
         $validKey = self::get($key);
-        if (!$validKey || is_numeric($validKey)) {
-            throw new Exception("{$validKey} must be a string"); 
+        if (!is_string($validKey) || !is_numeric($min) || !is_numeric($max) {
+            throw new InvalidArgumentException("Invalid argument");
         }
+        
+
+
+        // if (!$validKey || is_numeric($validKey) || $validKey == "") {
+        //     throw new Exception("{$validKey} must be a string"); 
+        // }
         return trim($validKey);
     }
 
-    public static function getNumber($key, $default = 0){
+    public static function getNumber($key, $min = 0, $max = 40, $default = 0){
         $validNum = self::get($key, $default = 0);
-        if (!$validNum || !is_numeric($validNum)) {
-            throw new Exception("{$validNum} must be a number");
+        if (!is_string($validNum) || !is_numeric($min) || !is_numeric($max) {
+            throw new InvalidArgumentException("Invalid argument");
         }
+        
+
+
+        // if (!$validNum || !is_numeric($validNum)) {
+        //     throw new Exception("{$validNum} must be a number");
+        // }
         return floatval($validNum);
     }
     public static function getDate($key) {

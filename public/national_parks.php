@@ -14,39 +14,39 @@ function pageController($dbc) {
 	$errors = [];
 	if (Input::isPost()) {
 		try {
-			$name = Input::getString('name');
+			$name = Input::getString('name'); //evaluating the input
 		} catch (Exception $e) {
-			$errors['name'] = 'Not a valid input';
+			$errors['name'] = 'Not a valid name'; //pass to the errors array a message
 		}
 
 		try {
 			$location = Input::getString('location');
 		} catch (Exception $e){
-			$errors['location'] = 'Not a valid input';
+			$errors['location'] = 'Not a valid location';
 		}
 
 		try {
 			$date_established = Input::getDate('date_established');
 		} catch (Exception $e) {
-			$errors['date_established'] = 'Not a valid input';
+			$errors['date_established'] = 'Not a valid date';
 		}
 
 		try {
 			$area_in_acres = Input::getNumber('area_in_acres');
 		} catch (Exception $e) {
-			$errors['area_in_acres'] = 'Not a valid input';
+			$errors['area_in_acres'] = 'Not a valid number';
 		}
 
 		try {
 			$description = Input::getString('description');
 		} catch (Exception $e) {
-			$errors['description'] = 'Not a valid input';
+			$errors['description'] = 'Not a valid description';
 		}
 
 		var_dump($errors);
-		// var_dump("Name: {$name}");
+		var_dump("Name: {$name}");
 		// var_dump("Location: {$location}");
-		var_dump($date_established);
+		// var_dump($date_established);
 		// var_dump("Area: {$area_in_acres}");
 		// var_dump("Description: {$description}");
 		if (!$errors) {
@@ -89,7 +89,7 @@ function pageController($dbc) {
 	  'date_established' => $date_established,
 	  'area_in_acres' => $area_in_acres,
 	  'description' => $description,
-	  'errors' => $errors
+	  'errors' => $errors 
 	];
 
 
@@ -233,8 +233,7 @@ extract(pageController($dbc));
 			<form method="post">
 				<h1>Submit New National Park</h1>
 				Name:<br>
-				<?= (!empty($errors['name'])) ? $errors['name'] : ""; ?>
-				<input type="text" name="name" required value="<?php $name ?>"><br><br>
+				<input type="text" name="name" required value="<?= $name ?>"><?= (!empty($errors['name'])) ? $errors['name'] : ""; ?><br><br>
 				Location:<br>
 				<select name="location">
 					<option value="AL">AL</option>
@@ -290,15 +289,12 @@ extract(pageController($dbc));
 					<option value="WY">WY</option>
 				</select><br><br>
 				Date Established:<br>
-				<?= (!empty($errors['date_established'])) ? $errors['date_established'] : ""; ?>
-				<input type="text" required name="date_established" placeholder="YYYY-MM-DD" value="<?= $date_established ?>"><br><br>
+				<input type="text" required name="date_established" placeholder="YYYY-MM-DD" value="<?= $date_established ?>"><?= (!empty($errors['date_established'])) ? $errors['date_established'] : ""; ?><br><br>
 				Size:<br>
-				<?= (!empty($errors['area_in_acres'])) ? $errors['area_in_acres'] : ""; ?>
-				<input type="text" required placeholder="Area in Acres" name="area_in_acres" value="<?= $area_in_acres ?>"><br><br>
+				<input type="text" required placeholder="Area in Acres" name="area_in_acres" value="<?= $area_in_acres ?>"><?= (!empty($errors['area_in_acres'])) ? $errors['area_in_acres'] : ""; ?><br><br>
 
 				Description:<br>
-				<?= (!empty($errors['description'])) ? $errors['description'] : ""; ?>
-				<textarea id="description" name="description" placeholder="Max 2000 characters" required value="<?= $description ?>"></textarea><br><br>
+				<textarea id="description" name="description" placeholder="Max 2000 characters" required><?= $description ?></textarea><?= (!empty($errors['description'])) ? $errors['description'] : ""; ?><br><br>
 
 				<button type="submit" class="btn btn-primary">
 					<span class="glyphicon glyphicon-floppy-disk" aria-hidden="true">
