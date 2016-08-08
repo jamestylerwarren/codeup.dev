@@ -15,7 +15,7 @@ function pageController($dbc) {
     if (Input::isPost()) {
         $name = Input::getString('name');
         $location = Input::getString('location');
-        $date_established = Input::get('date_established');
+        $date_established = Input::getDate('date_established');
         $area_in_acres = Input::getNumber('area_in_acres');
         $description = Input::getString('description');
         // var_dump("Name: {$name}");
@@ -27,10 +27,10 @@ function pageController($dbc) {
         $stmt = $dbc->prepare('INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
         
 	    $stmt->bindValue(':name', $name, PDO::PARAM_STR);
-	    $stmt->bindValue(':location',  $location,  PDO::PARAM_STR);
-	    $stmt->bindValue(':date_established',  $date_established,  PDO::PARAM_STR);
-	    $stmt->bindValue(':area_in_acres',  $area_in_acres,  PDO::PARAM_STR);
-	    $stmt->bindValue(':description',  $description,  PDO::PARAM_STR);
+	    $stmt->bindValue(':location', $location,  PDO::PARAM_STR);
+	    $stmt->bindValue(':date_established', $date_established->format('Y-m-d'), PDO::PARAM_STR);
+	    $stmt->bindValue(':area_in_acres', $area_in_acres,  PDO::PARAM_STR);
+	    $stmt->bindValue(':description', $description,  PDO::PARAM_STR);
 
 	    $stmt->execute();
     }

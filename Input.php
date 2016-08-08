@@ -37,19 +37,23 @@ class Input
         if (!$validKey || is_numeric($validKey)) {
             throw new Exception("{$validKey} must be a string"); 
         }
+        return trim($validKey);
     }
 
-    public static function getNumber($key){
-        $validNum = self::get($key);
+    public static function getNumber($key, $default = 0){
+        $validNum = self::get($key, $default = 0);
         if (!$validNum || !is_numeric($validNum)) {
             throw new Exception("{$validNum} must be a number");
         }
+        return floatval($validNum);
     }
     public static function getDate($key) {
         $validDate = self::get($key);
-        if (!$validDate) {
+        if (!strtotime($validDate)) {
             throw new Exception("{$validDate} is not a valid date");
         } 
+        $date = new DateTime($validDate);
+        return $date;
     }
 
 
