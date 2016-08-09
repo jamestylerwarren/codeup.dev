@@ -72,7 +72,7 @@ abstract class Model
         //if it does, call update, 
         //if not, means we are inserting a new record
         // @TODO: Ensure there are values in the attributes array before attempting to save
-        if(!empty($this->attributes['id'])) {
+        if(!empty($this->attributes['id'])) { //we want to evaluate the primary key
             $this->update();
         } else {
             $this->insert();
