@@ -5,9 +5,9 @@ require_once __DIR__ . '/User.php';
 
 
 // $user = new User();
-// $user->name = 'Tyler';
-// $user->email = 'warrejt@yahoo.com';
-// $user->password = 'Vagrant';
+// $user->name = 'Allison';
+// $user->email = 'allison@gmail.com';
+// $user->password = 'aneill';
 // $user->save();
 
 $user = User::find(1);

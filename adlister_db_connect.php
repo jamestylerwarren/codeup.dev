@@ -1,6 +1,6 @@
 <?php
 
-require_once __DIR__ . 'db_constants.php';
+require_once __DIR__ . '/db_constants.php';
 
 
 // Get new instance of PDO object

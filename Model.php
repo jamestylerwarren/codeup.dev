@@ -74,7 +74,6 @@ abstract class Model
         // @TODO: Ensure there are values in the attributes array before attempting to save
 
         self::dbConnect(); //connect to db
-
         if (!empty($this->attributes)) {
                 if (isset($this->attributes['id'])) { //we want to evaluate the primary key
                 $this->update();
