@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . 'db_constants.php';
+require_once __DIR__ . '/db_constants.php';
 
 abstract class Model
 {

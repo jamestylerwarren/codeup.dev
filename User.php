@@ -11,13 +11,13 @@ class User extends Model
     {
         // @TODO: Use prepared statements to ensure data security
 
-        $stmt = $dbc->prepare("INSERT INTO adlister_db (name, email, password) VALUES (:name, :email, :password)");
+        $stmt = self::$dbc->prepare("INSERT INTO adlister_db (name, email, password) VALUES (:name, :email, :password)");
     
         // @TODO: You will need to iterate through all the attributes to build the prepared query
 
-        $stmt->bindvalue(':name', $attributes['name'], PDO::PARAM_STR);
-        $stmt->bindvalue(':email', $attributes['email'], PDO::PARAM_STR);
-        $stmt->bindvalue(':password', $attributes['password'], PDO::PARAM_STR);
+        $stmt->bindvalue(':name', $this->attributes['name'], PDO::PARAM_STR);
+        $stmt->bindvalue(':email', $this->attributes['email'], PDO::PARAM_STR);
+        $stmt->bindvalue(':password', $this->attributes['password'], PDO::PARAM_STR);
         $stmt->execute();
     
         // @TODO: After the insert, add the id back to the attributes array
@@ -29,11 +29,12 @@ class User extends Model
     protected function update()
     {
         // @TODO: Use prepared statements to ensure data security
-        $stmt = $dbc->prepare("UPDATE adlister_db (name, email, password) VALUES (:name, :email, :password) WHERE id ="$this->attributes['id']);
+        $stmt = self::$dbc->prepare("UPDATE adlister_db (name, email, password) VALUES (:name, :email, :password) WHERE id = :id");
         // @TODO: You will need to iterate through all the attributes to build the prepared query
-        $stmt->bindvalue(':name', $attributes['name'], PDO::PARAM_STR);
-        $stmt->bindvalue(':email', $attributes['email'], PDO::PARAM_STR);
-        $stmt->bindvalue(':password', $attributes['password'], PDO::PARAM_STR);
+        $stmt->bindvalue(':id', $this->attributes['id'], PDO::PARAM_INT);
+        $stmt->bindvalue(':name', $this->attributes['name'], PDO::PARAM_STR);
+        $stmt->bindvalue(':email', $this->attributes['email'], PDO::PARAM_STR);
+        $stmt->bindvalue(':password', $this->attributes['password'], PDO::PARAM_STR);
         $stmt->execute();
 
     }
@@ -51,10 +52,11 @@ class User extends Model
         self::dbConnect();
 
         // @TODO: Create select statement using prepared statements
-        $stmt = $dbc->prepare("SELECT id FROM users WHERE id ="$this->attributes['id']);
+        $stmt = self::$dbc->prepare("SELECT id FROM users WHERE id = :id");
 
+        $stmt->bindvalue(':id', $this->attributes['id'], PDO::PARAM_INT);
         // @TODO: Store the result in a variable named $result
-        $result = $stmt->execute();
+        $result = mysql_query($stmt->execute());
 
         // The following code will set the attributes on the calling object based on the result variable's contents
         $instance = null;
@@ -74,13 +76,14 @@ class User extends Model
         self::dbConnect();
 
         // @TODO: Learning from the find method, return all the matching records
-        $stmt = $dbc->prepare("SELECT * FROM users WHERE id ="$this->attributes['id']);
-        $result = $stmt->execute();
+        $stmt = self::$dbc->prepare("SELECT * FROM users WHERE id = :id");
 
-        $instance = null;
-        if ($result) {
-            $instance = new static($result);
-        }
-        return $instance;
+        $stmt->bindvalue(':id', $this->attributes['id'], PDO::PARAM_INT);
+        $stmt->bindvalue(':name', $this->attributes['name'], PDO::PARAM_STR);
+        $stmt->bindvalue(':email', $this->attributes['email'], PDO::PARAM_STR);
+        $stmt->bindvalue(':password', $this->attributes['password'], PDO::PARAM_STR);
+        $stmt->execute();
+
+        $result = mysql_query($stmt->execute());
     }
 }
