@@ -1,5 +1,5 @@
 <?php
-require_once "adlister_db_constants.php";
+require_once "db_constants.php";
 
 abstract class Model
 {
@@ -46,7 +46,11 @@ abstract class Model
     public function __get($name)
     {
         // @TODO: Return the value from attributes for $name if it exists, else return null
-        
+        if (array_key_exists($name, $this->attributes)) {
+            return $this->attributes[$name];
+        } else {
+            return null;
+        }
     }
 
     /**
@@ -58,6 +62,7 @@ abstract class Model
     public function __set($name, $value)
     {
         // @TODO: Store name/value pair in attributes array
+        $this->attributes[$name] = $value;
     }
 
     /** Store the object in the database */

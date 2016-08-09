@@ -1,6 +1,6 @@
 <?php
 
-require_once "adlister_db_constants.php";
+require_once "db_constants.php";
 
 
 // Get new instance of PDO object
