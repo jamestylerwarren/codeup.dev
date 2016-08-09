@@ -11,8 +11,18 @@ class User extends Model
     {
         // @TODO: Use prepared statements to ensure data security
 
-        // @TODO: You will need to iterate through all the attributes to build the prepared query
+        $stmt = $dbc->prepare("INSERT INTO adlister_db (name, email, password) VALUES (:name, :email, :password)");
+        
+        foreach ($attributes as $attribute) {
+            $stmt->bindvalue(':name', $attribute['name'], PDO::PARAM_STR);
+            $stmt->bindvalue(':email', $attribute['email'], PDO::PARAM_STR);
+            $stmt->bindvalue(':password', $attribute['password'], PDO::PARAM_STR);
+            $stmt->execute();
 
+            echo "Inserted ID: " . $dbc->lastInsertId() . PHP_EOL;
+        }
+        // @TODO: You will need to iterate through all the attributes to build the prepared query
+        
         // @TODO: After the insert, add the id back to the attributes array
         //        so the object properly represents a DB record
     }

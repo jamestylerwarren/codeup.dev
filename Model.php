@@ -1,5 +1,5 @@
 <?php
-require_once "db_constants.php";
+require_once __DIR__ . 'db_constants.php';
 
 abstract class Model
 {
@@ -72,7 +72,11 @@ abstract class Model
         //if it does, call update, 
         //if not, means we are inserting a new record
         // @TODO: Ensure there are values in the attributes array before attempting to save
-
+        if(!empty($this->attributes['id'])) {
+            $this->update();
+        } else {
+            $this->insert();
+        }
         // @TODO: Call the proper database method: if the `id` is set this is an update, else it is a insert
     }
 
