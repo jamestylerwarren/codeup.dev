@@ -1,13 +1,6 @@
 <?php
 
-
-define('DB_HOST', '127.0.0.1');
-
-define('DB_NAME', 'adlister_db');
-
-define('DB_USER', 'adlister_user');
-
-define('DB_PASS', 'vagrant');
+require_once "adlister_db_constants.php";
 
 
 // Get new instance of PDO object

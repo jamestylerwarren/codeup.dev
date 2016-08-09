@@ -1,4 +1,5 @@
 <?php
+require_once "adlister_db_constants.php";
 
 abstract class Model
 {
@@ -18,8 +19,8 @@ abstract class Model
     public function __construct(array $attributes = array())
     {
         self::dbConnect();
-
         // @TODO: Initialize the $attributes property with the passed value
+        $this->attributes = $attributes;
     }
 
     /**
@@ -31,7 +32,8 @@ abstract class Model
     {
         if (!self::$dbc) {
             // @TODO: Connect to database
-        }
+        $dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+        }        
     }
 
     /**
@@ -44,6 +46,7 @@ abstract class Model
     public function __get($name)
     {
         // @TODO: Return the value from attributes for $name if it exists, else return null
+        
     }
 
     /**
