@@ -44,7 +44,7 @@ class Input
             throw new DomainException("Domain exception - not the correct type");
         }
         if ($min > strlen($validKey) || $max < strlen($validKey)) {
-            throw new RangeException("String length is less than {$max} or greater than {max}");
+            throw new RangeException("String length is less than min or greater than max");
         }
         
         return trim($validKey);
@@ -52,7 +52,7 @@ class Input
 
     public static function getNumber($key, $min = 0, $max = 40, $default = 0){
         $validNum = self::get($key, $default = 0);
-        if (!is_numeric($key) || !is_numeric($min) || !is_numeric($max)) {
+        if (is_numeric($key) || !is_numeric($min) || !is_numeric($max)) {
             throw new InvalidArgumentException("Invalid argument");
         }
         if (!self::has($key)) {
@@ -61,17 +61,20 @@ class Input
         if (!is_numeric($validNum)) {
             throw new DomainException("Domain exception - not the correct type");
         }
-        if ($min > $validNum || $max < $validNum) {
-            throw new RangeException("Number is less than {$min} or greater than {max}");
+        if ($min > $validNum || $max < strlen($validNum)) {
+            throw new RangeException("Number is less than min or greater than max");
         }
 
         return floatval($validNum);
     }
-    public static function getDate($key) {
+    public static function getDate($key, $min = '1000-01-01', $max = '9999-12-31') {
         $validDate = self::get($key);
         if (!strtotime($validDate)) {
             throw new Exception("{$validDate} is not a valid date");
         } 
+        if ($min > $validDate || $max < $validDate) {
+            throw new DateRangeException("Date is less than mix or greater than max");
+        }
         $date = new DateTime($validDate);
         return $date;
     }

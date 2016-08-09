@@ -13,38 +13,67 @@ function pageController($dbc) {
 	$description = '';
 	$errors = [];
 	if (Input::isPost()) {
-		try {
-			$name = Input::getString('name'); //evaluating the input
-		} catch (Exception $e) {
-			$errors['name'] = 'Not a valid name'; //pass to the errors array a message
-		}
 
 		try {
-			$location = Input::getString('location');
-		} catch (Exception $e){
-			$errors['location'] = 'Not a valid location';
+			$name = Input::getString('name'); //evaluating the input
+		} catch (InvalidArgumentException $e) {
+			$errors['name'] = "Invalid argument"; //pass various error messages into array $errors
+		} catch (OutOfRangeException $e) {
+			$errors['name'] = "Out of range exception";
+		} catch (DomainException $e) {
+			$errors['name'] = "Domain exception - not the correct type";
+		} catch (RangeException $e) {
+			$errors['name'] = "String length is less than min or greater than max";
 		}
+
+
+		try {
+			$location = Input::getString('location'); //evaluating the input
+		} catch (InvalidArgumentException $e) {
+			$errors['location'] = "Invalid argument"; //pass various error messages into array $errors
+		} catch (OutOfRangeException $e) {
+			$errors['location'] = "Out of range exception";
+		} catch (DomainException $e) {
+			$errors['location'] = "Domain exception - not the correct type";
+		} catch (RangeException $e) {
+			$errors['location'] = "String length is less than min or greater than max";
+		}
+
 
 		try {
 			$date_established = Input::getDate('date_established');
 		} catch (Exception $e) {
-			$errors['date_established'] = 'Not a valid date';
+			$errors['date_established'] = "Not a valid date";
+		} catch (DateRangeException $e) {
+			$errors['date_established'] = "Date is less than mix or greater than max";
 		}
+
 
 		try {
-			$area_in_acres = Input::getNumber('area_in_acres');
-		} catch (Exception $e) {
-			$errors['area_in_acres'] = 'Not a valid number';
+			$area_in_acres = Input::getNumber('area_in_acres'); //evaluating the input
+		} catch (InvalidArgumentException $e) {
+			$errors['area_in_acres'] = "Invalid argument"; //pass various error messages into array $errors
+		} catch (OutOfRangeException $e) {
+			$errors['area_in_acres'] = "Out of range exception";
+		} catch (DomainException $e) {
+			$errors['area_in_acres'] = "Domain exception - not the correct type";
+		} catch (RangeException $e) {
+			$errors['area_in_acres'] = "String length is less than min or greater than max";
 		}
+
 
 		try {
-			$description = Input::getString('description');
-		} catch (Exception $e) {
-			$errors['description'] = 'Not a valid description';
+			$description = Input::getString('description'); //evaluating the input
+		} catch (InvalidArgumentException $e) {
+			$errors['description'] = "Invalid argument"; //pass various error messages into array $errors
+		} catch (OutOfRangeException $e) {
+			$errors['description'] = "Out of range exception";
+		} catch (DomainException $e) {
+			$errors['description'] = "Domain exception - not the correct type";
+		} catch (RangeException $e) {
+			$errors['description'] = "String length is less than min or greater than max";
 		}
 
-		var_dump($errors);
-		var_dump("Name: {$name}");
 		// var_dump("Location: {$location}");
 		// var_dump($date_established);
 		// var_dump("Area: {$area_in_acres}");
