@@ -32,7 +32,7 @@ abstract class Model
     {
         if (!self::$dbc) {
             // @TODO: Connect to database
-        $dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+            self::$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
         }        
     }
 
@@ -72,10 +72,15 @@ abstract class Model
         //if it does, call update, 
         //if not, means we are inserting a new record
         // @TODO: Ensure there are values in the attributes array before attempting to save
-        if(!empty($this->attributes['id'])) { //we want to evaluate the primary key
-            $this->update();
-        } else {
-            $this->insert();
+
+        self::dbConnect(); //connect to db
+
+        if (!empty($this->attributes)) {
+                if (isset($this->attributes['id'])) { //we want to evaluate the primary key
+                $this->update();
+            } else {
+                $this->insert();
+            }
         }
         // @TODO: Call the proper database method: if the `id` is set this is an update, else it is a insert
     }
