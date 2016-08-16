@@ -15,6 +15,9 @@ class User extends Model
    
         // @TODO: You will need to iterate through all the attributes to build the prepared query
 
+        //can make into a foreach ($attributes as $attribute => $value) {
+            // $stmt->bindValue($attribute, $value, PDO::PARAM_STR);
+        //}
         $stmt->bindValue(':name', $this->attributes['name'], PDO::PARAM_STR);
         $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
         $stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
@@ -38,11 +41,8 @@ class User extends Model
         $stmt->bindValue(':name', $this->attributes['name'], PDO::PARAM_STR);
         $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
         $stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
-
-        $didExecute = $stmt->execute();
-        var_dump($this->attributes);
-        var_dump($didExecute);
-
+        $stmt->execute();
+        //can make the entire bind value and query execution into it's own private function in User object - it's used multiple times in this object
     }
 
     /**
@@ -54,7 +54,7 @@ class User extends Model
      */
     public static function find($id)
     {
-        // Get connection to the database
+        // Get connection to the database bc this is a static function
         self::dbConnect();
         // @TODO: Create select statement using prepared statements
         $stmt = self::$dbc->prepare("SELECT * FROM users WHERE id = :id");
@@ -87,17 +87,15 @@ class User extends Model
         self::dbConnect();
 
         // @TODO: Learning from the find method, return all the matching records
-        $stmt = self::$dbc->prepare("SELECT * FROM users WHERE id = :id");
+        $stmt = self::$dbc->prepare("SELECT * FROM users");
+        $stmt->execute();
+        $rows = $stmt->fetchALL(PDO::FETCH_ASSOC);
 
-        $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
-        $stmt->bindValue(':name', $this->attributes['name'], PDO::PARAM_STR);
-        $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
-        $stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
-
-        $didExecute = $stmt->execute();
-        if ($didExecute) {
-            $result = $stmt->fetch(PFO::FETCH_ASSOC);
+        $users = [];
+        foreach ($rows as $row) {
+            $users[] = new static($row);
         }
-        
+        return $users;
+        //want to return 
     }
 }

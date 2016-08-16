@@ -9,10 +9,12 @@ require_once __DIR__ . '/User.php';
 // $user->email = 'allison@gmail.com';
 // $user->password = 'aneill';
 // $user->save();
+// SAVE() WORKS
 
-$user = User::find(1);
-$user->email = 'tyler@capsulefeeders.com';
-$user->save();
+// $user = User::find(1);
+// $user->email = 'tyler@capsulefeeders.com';
+// $user->save();
+// FIND() WORKS
 
 
 

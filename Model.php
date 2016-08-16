@@ -34,7 +34,9 @@ abstract class Model
             // @TODO: Connect to database
             self::$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
         }        
+        self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);    
     }
+
 
     /**
      * Get a value from attributes based on its name
@@ -72,16 +74,18 @@ abstract class Model
         //if it does, call update, 
         //if not, means we are inserting a new record
         // @TODO: Ensure there are values in the attributes array before attempting to save
-
         self::dbConnect(); //connect to db
-        if (!empty($this->attributes)) {
-                if (isset($this->attributes['id'])) { //we want to evaluate the primary key
-                $this->update();
-            } else {
-                $this->insert();
-            }
-        }
+        if (empty($this->attributes)) {
+            throw new InvalidArgumentException("There are no values to insert/update"); //evaluate bad outcome first - DEFENSIVE PROGRAMMING
+        } 
+
         // @TODO: Call the proper database method: if the `id` is set this is an update, else it is a insert
+        if (isset($this->attributes['id'])) { //we want to evaluate the primary key
+            $this->update();
+        } else {
+            $this->insert();
+        }
+
     }
 
     /**
